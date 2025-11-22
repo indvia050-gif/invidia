@@ -2,7 +2,7 @@ import {
   Settings,
   ChevronDown
 } from 'lucide-react';
-import { menuItems } from '../utils/constants';
+import { menuItems } from '../utils/PersonaAudienceconstants';
 
 interface SidebarProps {
   collapsed: boolean;

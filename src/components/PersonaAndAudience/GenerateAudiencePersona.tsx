@@ -1,17 +1,9 @@
 import { useState } from 'react';
-import { Users, Check } from 'lucide-react';
-import { tagColors, topFeatures, personaMetrics } from '../utils/constants';
+import { Users } from 'lucide-react';
+import { existingPersonas, buyerPersonas, topFeatures, personaMetrics } from '../../utils/PersonaAudienceconstants';
+import PersonaCard  from "./PersonaCard"
 
-interface Persona {
-  id: string;
-  cluster: string;
-  tags: string[];
-  title: string;
-  contacts: number;
-  persona: string;
-}
-
-function GenerateAudiencePersona() {
+const GenerateAudiencePersona=()=> {
   const [personaCount, setPersonaCount] = useState(30);
   const [selectedPersonas, setSelectedPersonas] = useState<string[]>([]);
 
@@ -20,115 +12,6 @@ function GenerateAudiencePersona() {
       prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
     );
   };
-
-  const buyerPersonas = [
-    {
-      id: 'bp1',
-      cluster: 'Cluster 1',
-      tags: ['$60-79K HHI', '45-54 Active', '$1M+ Moderate ($)', '44+ High Subscriber'],
-      title: 'Cabin Weekender',
-      contacts: 228,
-      persona: 'Millennial couple, travel to cabin retreats, cooks at home, buys organic, values warmth.'
-    },
-    {
-      id: 'bp2',
-      cluster: 'Cluster 2',
-      tags: ['$60-79K HHI', '55+ Active', '$1M+ Moderate ($)', '44+ High Subscriber'],
-      title: 'Gentle Adventurer',
-      contacts: 228,
-      persona: 'Outdoors-inspired but not technical; seeks comfort, style, and subtle performance.'
-    },
-    {
-      id: 'bp3',
-      cluster: 'Cluster 3',
-      tags: ['$40-59K HHI', '35% Active', '$1M+ Valuer ($)', '44+ Low Subscriber'],
-      title: 'Summer Wayfarer',
-      contacts: 228,
-      persona: 'Easygoing explorer who values experiences over things; spontaneous and lighthearted.'
-    },
-    {
-      id: 'bp4',
-      cluster: 'Cluster 4',
-      tags: ['$60-79K HHI', '55% Active', '$1M+ Moderate ($)', '44+ Low Subs/Go+'],
-      title: 'Heritage Minimalist',
-      contacts: 228,
-      persona: 'Discerning, design-minded professional; prefers timeless quality over excess.'
-    }
-  ];
-
-  const existingPersonas = [
-    {
-      id: 'ep1',
-      cluster: 'Cluster 1',
-      tags: ['$60-79K HHI', '45% Active', '$1M+ Moderate ($)', '44+ Low Subscriber'],
-      title: 'Cabin Weekender',
-      contacts: 228,
-      persona: 'Millennial couple, travel to cabin retreats, cooks at home, buys organic, values warmth.'
-    },
-    {
-      id: 'ep2',
-      cluster: 'Cluster 2',
-      tags: ['$60-79K HHI', '55% Active', '$1M+ Moderate ($)', '44+ Low Subscriber'],
-      title: 'Gentle Adventurer',
-      contacts: 228,
-      persona: 'Outdoors-inspired but not technical; seeks comfort, style, and subtle performance.'
-    },
-    {
-      id: 'ep3',
-      cluster: 'Cluster 3',
-      tags: ['$60-79K HHI', '35% Active', '$1M+ Valuer ($)', '44+ Low Subscriber'],
-      title: 'Summer Wayfarer',
-      contacts: 228,
-      persona: 'Easygoing explorer who values experiences over things; spontaneous and lighthearted.'
-    },
-    {
-      id: 'ep4',
-      cluster: 'Cluster 4',
-      tags: ['$60-79K HHI', '55% Active', '$1M+ Moderate ($)', '44+ Low Subs/Go+'],
-      title: 'Heritage Minimalist',
-      contacts: 228,
-      persona: 'Discerning, design-minded professional; prefers timeless quality over excess.'
-    }
-  ];
-
-  const PersonaCard = ({ persona, isSelected, onClick }: { persona: Persona; isSelected: boolean; onClick: () => void }) => (
-    <div
-      className={`border rounded-lg p-4 cursor-pointer transition ${
-        isSelected ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
-      }`}
-      onClick={onClick}
-    >
-      <div className="flex items-start justify-between mb-3">
-        <div>
-          <div className="text-xs text-gray-500 mb-1">{persona.cluster}</div>
-          <div className="flex flex-wrap gap-1 mb-2">
-            {persona.tags.map((tag, idx) => (
-              <span
-                key={idx}
-                className={`text-xs px-2 py-0.5 rounded ${tagColors[idx % tagColors.length]}`}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-        {isSelected && (
-          <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-            <Check className="w-4 h-4 text-white" />
-          </div>
-        )}
-      </div>
-      <h4 className="font-semibold text-lg mb-2">{persona.title}</h4>
-      <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-        <Users className="w-4 h-4" />
-        <span>Contacts: {persona.contacts}</span>
-      </div>
-      <div className="flex items-start gap-2 text-sm text-gray-600">
-        <span className="font-medium">Persona:</span>
-        <span>{persona.persona}</span>
-      </div>
-    </div>
-  );
 
   return (
     <div className="min-h-screen bg-gray-50">

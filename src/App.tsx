@@ -7,11 +7,11 @@ import {
   Filter,
   Download
 } from 'lucide-react';
-import SegmentationSettingsModal from './components/SegmentationSettingsModal';
-import CreateSegmentModal from './components/CreateSegmentModal';
+import SegmentationSettingsModal from './components/PersonaAndAudience/SegmentationSettingsModal';
+import CreateSegmentModal from './components/PersonaAndAudience/CreateSegmentModal';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
-import { segments, customerMetrics, filterOptions, additionalFilters, customerTableHeaders, dummyCustomers } from './utils/constants';
+import { segments, customerMetrics, filterOptions, additionalFilters, customerTableHeaders, dummyCustomers } from './utils/PersonaAudienceconstants';
 
 function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);

@@ -189,3 +189,73 @@ export const buyingTiers = [
   { name: 'High AOV Buyers', description: 'AOV >> Xth Percentile', defaultValue: 90, unit: 'th Percentile' },
   { name: 'Discount Buyers', description: 'Average Discount % >= X%', defaultValue: 30, unit: '%' },
 ];
+
+export const buyerPersonas = [
+    {
+      id: 'bp1',
+      cluster: 'Cluster 1',
+      tags: ['$60-79K HHI', '45-54 Active', '$1M+ Moderate ($)', '44+ High Subscriber'],
+      title: 'Cabin Weekender',
+      contacts: 228,
+      persona: 'Millennial couple, travel to cabin retreats, cooks at home, buys organic, values warmth.'
+    },
+    {
+      id: 'bp2',
+      cluster: 'Cluster 2',
+      tags: ['$60-79K HHI', '55+ Active', '$1M+ Moderate ($)', '44+ High Subscriber'],
+      title: 'Gentle Adventurer',
+      contacts: 228,
+      persona: 'Outdoors-inspired but not technical; seeks comfort, style, and subtle performance.'
+    },
+    {
+      id: 'bp3',
+      cluster: 'Cluster 3',
+      tags: ['$40-59K HHI', '35% Active', '$1M+ Valuer ($)', '44+ Low Subscriber'],
+      title: 'Summer Wayfarer',
+      contacts: 228,
+      persona: 'Easygoing explorer who values experiences over things; spontaneous and lighthearted.'
+    },
+    {
+      id: 'bp4',
+      cluster: 'Cluster 4',
+      tags: ['$60-79K HHI', '55% Active', '$1M+ Moderate ($)', '44+ Low Subs/Go+'],
+      title: 'Heritage Minimalist',
+      contacts: 228,
+      persona: 'Discerning, design-minded professional; prefers timeless quality over excess.'
+    }
+  ];
+
+export const existingPersonas = [
+    {
+      id: 'ep1',
+      cluster: 'Cluster 1',
+      tags: ['$60-79K HHI', '45% Active', '$1M+ Moderate ($)', '44+ Low Subscriber'],
+      title: 'Cabin Weekender',
+      contacts: 228,
+      persona: 'Millennial couple, travel to cabin retreats, cooks at home, buys organic, values warmth.'
+    },
+    {
+      id: 'ep2',
+      cluster: 'Cluster 2',
+      tags: ['$60-79K HHI', '55% Active', '$1M+ Moderate ($)', '44+ Low Subscriber'],
+      title: 'Gentle Adventurer',
+      contacts: 228,
+      persona: 'Outdoors-inspired but not technical; seeks comfort, style, and subtle performance.'
+    },
+    {
+      id: 'ep3',
+      cluster: 'Cluster 3',
+      tags: ['$60-79K HHI', '35% Active', '$1M+ Valuer ($)', '44+ Low Subscriber'],
+      title: 'Summer Wayfarer',
+      contacts: 228,
+      persona: 'Easygoing explorer who values experiences over things; spontaneous and lighthearted.'
+    },
+    {
+      id: 'ep4',
+      cluster: 'Cluster 4',
+      tags: ['$60-79K HHI', '55% Active', '$1M+ Moderate ($)', '44+ Low Subs/Go+'],
+      title: 'Heritage Minimalist',
+      contacts: 228,
+      persona: 'Discerning, design-minded professional; prefers timeless quality over excess.'
+    }
+  ];

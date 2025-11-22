@@ -6,7 +6,7 @@ import {
   Share2,
   ChevronRight
 } from 'lucide-react';
-import { avatars } from '../utils/constants';
+import { avatars } from '../utils/PersonaAudienceconstants';
 
 interface HeaderProps {
   onToggleSidebar: () => void;

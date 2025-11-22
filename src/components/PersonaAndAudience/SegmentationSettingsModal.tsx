@@ -1,12 +1,12 @@
 import { X } from 'lucide-react';
-import { lifecycleStages, engagementLevels, buyingTiers } from '../utils/constants';
+import { lifecycleStages, engagementLevels, buyingTiers } from '../../utils/PersonaAudienceconstants';
 
 interface SegmentationSettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function SegmentationSettingsModal({ isOpen, onClose }: SegmentationSettingsModalProps) {
+const SegmentationSettingsModal=({ isOpen, onClose }: SegmentationSettingsModalProps)=> {
   if (!isOpen) return null;
 
   return (
@@ -244,3 +244,4 @@ export default function SegmentationSettingsModal({ isOpen, onClose }: Segmentat
     </div>
   );
 }
+export default SegmentationSettingsModal;

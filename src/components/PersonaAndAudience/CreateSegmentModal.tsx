@@ -6,14 +6,14 @@ import {
   occasionOptions,
   engagementLevelOptions,
   engagementBehaviors
-} from '../utils/constants';
+} from '../../utils/PersonaAudienceconstants';
 
 interface CreateSegmentModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function CreateSegmentModal({ isOpen, onClose }: CreateSegmentModalProps) {
+ const CreateSegmentModal =({ isOpen, onClose }: CreateSegmentModalProps)=> {
   const [segmentName, setSegmentName] = useState('');
   const [selectedSegments, setSelectedSegments] = useState<string[]>([]);
   const [selectedOccasions, setSelectedOccasions] = useState<string[]>(['Life Event']);
@@ -287,3 +287,4 @@ export default function CreateSegmentModal({ isOpen, onClose }: CreateSegmentMod
     </div>
   );
 }
+export default CreateSegmentModal;
