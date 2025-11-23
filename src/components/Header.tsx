@@ -17,7 +17,7 @@ interface HeaderProps {
 function Header({ onToggleSidebar, onBack, onNext }: HeaderProps) {
 
   return (
-    <header className="bg-[#5087FF] p-2 mx-[0.1%] my-2 text-white flex items-center rounded-lg justify-between">
+    <header className="bg-[#5087FF] p-2 mx-[0.1%] my-2 mr-2 text-white flex items-center rounded-lg justify-between">
       <div className="flex items-center gap-4">
         <button
           onClick={onToggleSidebar}

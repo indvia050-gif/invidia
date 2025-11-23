@@ -11,13 +11,15 @@ import SegmentationSettingsModal from './components/PersonaAndAudience/Segmentat
 import CreateSegmentModal from './components/PersonaAndAudience/CreateSegmentModal';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
+import BrandAssetSetup from './components/BrandManagement/BrandAssetsSetup';
 import { segments, customerMetrics, filterOptions, additionalFilters, customerTableHeaders, dummyCustomers } from './utils/PersonaAudienceconstants';
+import CreativeHub from './components/BrandManagement/CreativeHub';
 
 function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isCreateSegmentModalOpen, setIsCreateSegmentModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState<'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'settings' | 'profile'>('segments');
+  const [currentPage, setCurrentPage] = useState<'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'brand-setup' | 'settings' | 'profile'>('segments');
 
   const handleNavigate = (page: 'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'settings') => {
     setCurrentPage(page);
@@ -26,13 +28,13 @@ function App() {
   const handleBack = () => {
     if (currentPage === 'profile') {
       setCurrentPage('segments');
-    } else {
-      setCurrentPage('dashboard');
     }
   };
 
   const handleNext = () => {
-    setCurrentPage(currentPage === 'segments' ? 'profile' : 'segments');
+    if (currentPage === 'segments') {
+      setCurrentPage('profile');
+    }
   };
 
   return (
@@ -270,7 +272,15 @@ function App() {
             </div>
           )}
 
-          {(currentPage === 'dashboard' || currentPage === 'campaigns' || currentPage === 'analytics' || currentPage === 'playbooks' || currentPage === 'brand' || currentPage === 'settings') && (
+          {currentPage === 'brand' && (
+            <CreativeHub onOpenSetup={() => setCurrentPage('brand-setup')} />
+          )}
+
+          {currentPage === 'brand-setup' && (
+            <BrandAssetSetup />
+          )}
+
+          {(currentPage === 'dashboard' || currentPage === 'campaigns' || currentPage === 'analytics' || currentPage === 'playbooks' || currentPage === 'settings') && (
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">{currentPage.charAt(0).toUpperCase() + currentPage.slice(1)} Page</h2>

@@ -6,7 +6,7 @@ import { menuItems } from '../utils/PersonaAudienceconstants';
 
 interface SidebarProps {
   collapsed: boolean;
-  currentPage: 'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'settings' | 'profile';
+  currentPage: 'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'brand-setup' | 'settings' | 'profile';
   onNavigate: (page: 'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'settings') => void;
 }
 

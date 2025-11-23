@@ -13,10 +13,10 @@
   ];
 
 export  const fonts = [
-    { name: 'Inter', description: 'Choose fonts that represent your brand identity' },
-    { name: 'Roboto', description: 'Choose fonts that represent your brand identity' },
-    { name: 'Sans', description: 'Choose fonts that represent your brand identity' },
-    { name: 'Poppins', description: 'Choose fonts that represent your brand identity' },
-    { name: 'Montserrat', description: 'Choose fonts that represent your brand identity' },
-    { name: 'Fira', description: 'Choose fonts that represent your brand identity' },
+    { name: 'Inter',font:'Inter', description: 'Choose fonts that represent your brand identity' },
+    { name: 'Roboto',font:'Roboto', description: 'Choose fonts that represent your brand identity' },
+    { name: 'Sans',font:'Open Sans', description: 'Choose fonts that represent your brand identity' },
+    { name: 'Poppins',font:'Poppins', description: 'Choose fonts that represent your brand identity' },
+    { name: 'Montserrat',font:'Montserrat', description: 'Choose fonts that represent your brand identity' },
+    { name: 'Fira',font:'Fira Sans', description: 'Choose fonts that represent your brand identity' },
   ];

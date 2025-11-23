@@ -1,80 +1,113 @@
-import { LinkIcon, Mail, Palette } from "lucide-react"
 
-const CreativeHub=()=>{
+interface CreativeHubProps {
+  onOpenSetup?: () => void;
+}
+
+const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
+  const assets = [
+    {
+      image: '/Brand.png',
+      count: '12 assets',
+      title: 'Brand Assets',
+      description: 'Manage logos, colors, fonts and brand guidelines.',
+      buttonText: 'Manage Assets',
+    },
+    {
+      image: '/Brand-2.png',
+      count: '48 campaign',
+      title: 'Campaign Library',
+      description: 'Store and organize past email campaigns.',
+      buttonText: 'Manage Assets',
+    },
+  ];
+
+  const integrations = [
+    {
+      image: '/Brand-3.png',
+      count: '15 tracked links',
+      title: 'Website & Links',
+      description: 'Track websites, Amazon links, and competitors',
+      buttonText: 'Manage Assets',
+    },
+  ];
+
+  const renderCard = (item: any, index: number) => {
+    const handleClick = () => {
+      if (item.title === 'Brand Assets' && onOpenSetup) {
+        onOpenSetup();
+      }
+    };
 
     return (
-            <div className="max-w-7xl mx-auto p-8">
-              <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900">Creative Hub</h1>
-                <p className="text-sm text-gray-500 mt-1">Centralize And Manage All Your Brand Assets And Integrations.</p>
-              </div>
+      <div
+        key={index}
+        className="bg-white rounded-xl border border-gray-200 p-6 flex flex-col transition hover:shadow-md"
+      >
+        <div className="flex items-start justify-between mb-6">
+            <img src={item.image} alt="" className="w-10 h-10 object-contain" />
+          <div className="px-3 py-1 bg-white border border-[#5087FF] text-[#5087FF] text-xs font-medium rounded-full">
+            {item.count}
+          </div>
+        </div>
+        <h3 className="text-lg font-semibold text-[#5D586C] mb-2">{item.title}</h3>
+        <p className="text-sm text-gray-500 mb-6 flex-grow">{item.description}</p>
+        <button
+          onClick={handleClick}
+          className="w-full px-4 py-3 bg-[#5087FF] text-white rounded-lg font-medium hover:bg-[#3D6CE8]"
+        >
+          {item.buttonText}
+        </button>
+      </div>
+    );
+  };
 
-              <div className="grid grid-cols-3 gap-4 mb-8">
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
-                  <div className="text-4xl font-bold text-gray-900">12</div>
-                  <div className="text-sm text-gray-600 mt-2">Brand Assets</div>
-                </div>
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
-                  <div className="text-4xl font-bold text-gray-900">48</div>
-                  <div className="text-sm text-gray-600 mt-2">Campaigns</div>
-                </div>
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
-                  <div className="text-4xl font-bold text-gray-900">3</div>
-                  <div className="text-sm text-gray-600 mt-2">Integrations</div>
-                </div>
-              </div>
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 max-w-7xl p-3 mb-2 mr-2">
+      <div className="mb-8">
+        <h1 className="text-3xl font-semibold text-[#5D586C]">Creative Hub</h1>
+        <p className="text-sm text-gray-500 mt-1">
+          Centralize And Manage All Your Brand Assets And Integrations.
+        </p>
+      </div>
 
-              <div className="bg-white rounded-lg border border-gray-200 p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Assets & Content</h2>
-                <p className="text-sm text-gray-500 mb-6">Manage Creative Assets And Content Resources</p>
+      <div className="bg-white rounded-xl border border-gray-200 grid grid-cols-3 gap-6 mb-8 ">
+        <div className="bg-white p-1 m-8 flex flex-col  border-r border-gray-200">
+          <span className="text-2xl font-bold text-[#5D586C]">12</span>
+          <span className="text-sm text-gray-600 mt-2">Brand Assets</span>
+        </div>
+        <div className="bg-white p-1 m-8 flex flex-col  border-r border-gray-200">
+          <span className="text-2xl font-bold text-[#5D586C]">48</span>
+          <span className="text-sm text-gray-600 mt-2">Campaigns</span>
+        </div>
+        <div className="bg-white p-1 m-8 flex flex-col  border-gray-200">
+          <span className="text-2xl font-bold text-[#5D586C]">3</span>
+          <span className="text-sm text-gray-600 mt-2">Integrations</span>
+        </div>
+      </div>
 
-                <div className="grid grid-cols-2 gap-8">
-                  <div className="flex flex-col items-center p-8 border border-gray-200 rounded-lg hover:shadow-md transition">
-                    <Palette className="w-12 h-12 text-indigo-500 mb-3" />
-                    <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 text-xs font-medium rounded-full mb-4">
-                      12 assets
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Brand Assets</h3>
-                    <p className="text-sm text-gray-500 text-center mb-6">
-                      Manage logos , colors , fonts and brand guidelines.
-                    </p>
-                    <button className="w-full px-4 py-2 bg-indigo-500 text-white rounded-lg font-medium hover:bg-indigo-600">
-                      Manage Assets
-                    </button>
-                  </div>
+      <div className="bg-white rounded-xl border border-gray-200 p-3">
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-[#5D586C] mb-1">Assets & Content</h2>
+          <p className="text-sm text-gray-500">
+            Manage Creative Assets And Content Resources
+          </p>
+        </div>
 
-                  <div className="flex flex-col items-center p-8 border border-gray-200 rounded-lg hover:shadow-md transition">
-                    <Mail className="w-12 h-12 text-indigo-500 mb-3" />
-                    <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 text-xs font-medium rounded-full mb-4">
-                      48 campaign
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Campaign Library</h3>
-                    <p className="text-sm text-gray-500 text-center mb-6">
-                      Store and organize past email campaigns.
-                    </p>
-                    <button className="w-full px-4 py-2 bg-indigo-500 text-white rounded-lg font-medium hover:bg-indigo-600">
-                      Manage Assets
-                    </button>
-                  </div>
-                </div>
+        <div className="grid grid-cols-2 gap-6 mb-4">
+          {assets.map(renderCard)}
+        </div>
 
-                <h2 className="text-2xl font-bold text-gray-900 mt-12 mb-2">Integrations</h2>
-                <p className="text-sm text-gray-500 mb-6">Connect External Platforms And Services</p>
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-[#5D586C] mb-1">Integrations</h2>
+          <p className="text-sm text-gray-500">Connect External Platforms And Services</p>
+        </div>
 
-                <div className="flex flex-col items-center p-8 border border-gray-200 rounded-lg hover:shadow-md transition">
-                  <LinkIcon className="w-12 h-12 text-indigo-500 mb-3" />
-                  <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 text-xs font-medium rounded-full mb-4">
-                    15 tracked links
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Website & Links</h3>
-                  <p className="text-sm text-gray-500 text-center mb-6">
-                    Track websites , Amazon links , and competitors
-                  </p>
-                  <button className="w-full max-w-sm px-4 py-2 bg-indigo-500 text-white rounded-lg font-medium hover:bg-indigo-600">
-                    Manage Assets
-                  </button>
-                </div>
-              </div>
-            </div>
-)}
-export default CreativeHub
+        <div className="grid grid-cols-1 max-w-md">
+          {integrations.map(renderCard)}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CreativeHub;
