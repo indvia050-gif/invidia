@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Lightbulb, Target, TrendingUp, Users, MessageSquare, Zap, Monitor, Share2, Award } from 'lucide-react';
+import { Lightbulb, Target, TrendingUp, Users, MessageSquare, Zap, Monitor, Award, BarChart3 } from 'lucide-react';
 import BrandDiscoveryModal from './BrandDiscoveryModal';
 
 interface Step {
@@ -14,55 +14,55 @@ const steps: Step[] = [
     number: 1,
     title: 'Brand Foundation',
     description: 'Tell us your brand story',
-    icon: <Lightbulb className="w-6 h-6 text-gray-600" />
+    icon: <Lightbulb className="w-6 h-6 text-[#5D586C]" />
   },
   {
     number: 2,
     title: 'Current Stage',
     description: 'Where are you in your journey ?',
-    icon: <Target className="w-6 h-6 text-gray-600" />
+    icon: <Target className="w-6 h-6 text-[#5D586C]" />
   },
   {
     number: 3,
     title: 'Audience & Growth',
     description: 'Current size and goals',
-    icon: <TrendingUp className="w-6 h-6 text-gray-600" />
+    icon: <TrendingUp className="w-6 h-6 text-[#5D586C]" />
   },
   {
     number: 4,
     title: 'Brand Aspirations',
     description: 'Where do you want to be ?',
-    icon: <Users className="w-6 h-6 text-gray-600" />
+    icon: <Users className="w-6 h-6 text-[#5D586C]" />
   },
   {
     number: 5,
     title: 'Brand Personality',
     description: 'How do you express yourself ?',
-    icon: <Zap className="w-6 h-6 text-gray-600" />
+    icon: <Zap className="w-6 h-6 text-[#5D586C]" />
   },
   {
     number: 6,
     title: 'Target Customer',
     description: 'Who is your ideal customer ?',
-    icon: <Users className="w-6 h-6 text-gray-600" />
+    icon: <Users className="w-6 h-6 text-[#5D586C]" />
   },
   {
     number: 7,
     title: 'Competition',
     description: 'Market position and differentiation',
-    icon: <Monitor className="w-6 h-6 text-gray-600" />
+    icon: <Monitor className="w-6 h-6 text-[#5D586C]" />
   },
   {
     number: 8,
     title: 'Communication Style',
     description: 'How do you talk to customers?',
-    icon: <MessageSquare className="w-6 h-6 text-gray-600" />
+    icon: <MessageSquare className="w-6 h-6 text-[#5D586C]" />
   },
   {
     number: 9,
     title: 'Target Category',
     description: 'Define your market segment and discover consumer pain points.',
-    icon: <Award className="w-6 h-6 text-gray-600" />
+    icon: <Award className="w-6 h-6 text-[#5D586C]" />
   }
 ];
 
@@ -75,12 +75,12 @@ const benefits = [
   {
     title: 'Consistent Voice',
     description: 'Maintain consistent communication style across all your marketing channels.',
-    icon: <Share2 className="w-6 h-6 text-gray-600" />
+    icon: <MessageSquare className="w-6 h-6 text-gray-600" />
   },
   {
     title: 'Better Results',
     description: 'Achieve higher engagement with content that resonates with your audience',
-    icon: <TrendingUp className="w-6 h-6 text-gray-600" />
+    icon: <BarChart3 className="w-6 h-6 text-gray-600" />
   }
 ];
 
@@ -96,44 +96,34 @@ function BrandIdentity({ onBack }: BrandIdentityProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-5xl mx-auto">
-        {onBack && (
-          <button
-            onClick={onBack}
-            className="mb-6 text-sm font-medium text-gray-600 hover:text-gray-800 transition-colors"
-          >
-            ← Back
-          </button>
-        )}
-
-        <div className="mb-8">
-          <h1 className="text-3xl font-semibold text-gray-900 mb-2">Brand Identity</h1>
-          <p className="text-gray-600">Help Us Understand Your Brand To Create Personalized Campaigns And Content.</p>
+    <div className="border rounded-xl bg-gray-50 p-3">
+        <div className="mb-3">
+          <h1 className="text-3xl font-semibold text-[#5D586C] mb-2">Brand Identity</h1>
+          <p className="text-[#5D586C]">Help Us Understand Your Brand To Create Personalized Campaigns And Content.</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-8 mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-6">
           <div className="mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-3">Discover your brand identity</h2>
-            <p className="text-sm text-gray-600 mb-6">Take our 8-step questionnaire to help us understand your unique brand story,goals and personality.This will enable us to provide personalized campaign  suggestions and content recommendations.</p>
+            <h2 className="text-2xl font-semibold text-[#5D586C] mb-3">Discover your brand identity</h2>
+            <p className="text-sm text-[#5D586C] mb-6">Take our 8-step questionnaire to help us understand your unique brand story,goals and personality.This will enable us to provide personalized campaign  suggestions and content recommendations.</p>
           </div>
 
-          <div className="mb-8">
-            <h3 className="text-base font-semibold text-gray-700 mb-4">Completion Progress</h3>
+          <div className="mb-2">
+            <h3 className="text-base font-semibold text-[#5D586C] mb-2">Completion Progress</h3>
             <button
               onClick={() => setShowModal(true)}
-              className="flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"
+              className="flex items-center justify-center h-[5vh] w-[20vw] gap-2 px-6 py-3 bg-[#5087FF] text-white rounded-lg hover:bg-[#3D6CE8] transition-colors"
             >
               <span>▶</span>
-              Start Brand Discovery
+              <span style={{fontSize:"14px"}}>Start Brand Discovery</span>
             </button>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-8 mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
           <div className="mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">What We'll Discover Together</h2>
-            <p className="text-sm text-gray-600">Our questionnaire covers 8 key areas to build your complete brand profile</p>
+            <h2 className="text-2xl font-semibold text-[#5D586C] mb-2">What We'll Discover Together</h2>
+            <p className="text-sm text-[#5D586C]">Our questionnaire covers 8 key areas to build your complete brand profile</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -143,30 +133,31 @@ function BrandIdentity({ onBack }: BrandIdentityProps) {
                   {step.icon}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">
+                  <h3 className="font-semibold text-[#5D586C] mb-1">
                     Step {step.number}: {step.title}
                   </h3>
-                  <p className="text-sm text-gray-600">{step.description}</p>
+                  <p className="text-sm text-[#5D586C]">{step.description}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-8">
-          <div className="grid grid-cols-3 gap-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="grid grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
-              <div key={index} className="flex flex-col items-start">
-                <div className="mb-4">
+              <div key={index} className="flex items-start gap-4 border rounded-lg p-4">
+                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
                   {benefit.icon}
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{benefit.title}</h3>
-                <p className="text-sm text-gray-600">{benefit.description}</p>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-[#5D586C] ">{benefit.title}</h3>
+                  <p className="text-sm text-[#5D586C] leading-relaxed">{benefit.description}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
-      </div>
     </div>
   );
 }

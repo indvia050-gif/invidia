@@ -14,25 +14,32 @@ import Header from './components/Header';
 import BrandAssetSetup from './components/BrandManagement/BrandAssetsSetup';
 import { segments, customerMetrics, filterOptions, additionalFilters, customerTableHeaders, dummyCustomers } from './utils/PersonaAudienceconstants';
 import CreativeHub from './components/BrandManagement/CreativeHub';
+import GenerateAudiencePersona from './components/PersonaAndAudience/GenerateAudiencePersona';
+import BrandVoice from './components/BrandManagement/brandVoice/BrandVoice';
+import Products from './components/BrandManagement/Products';
 
 function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isCreateSegmentModalOpen, setIsCreateSegmentModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState<'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'brand-setup' | 'settings' | 'profile'>('segments');
+  const [currentPage, setCurrentPage] = useState<'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'brand-setup' | 'brand-voice' | 'brand-products' | 'settings' | 'profile' | 'persona-audience'>('segments');
 
-  const handleNavigate = (page: 'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'settings') => {
+  const handleNavigate = (page: 'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'brand-voice' | 'brand-products' | 'settings' | 'persona-audience') => {
     setCurrentPage(page);
   };
 
   const handleBack = () => {
     if (currentPage === 'profile') {
       setCurrentPage('segments');
+    } else if (currentPage === 'segments') {
+      setCurrentPage('persona-audience');
     }
   };
 
   const handleNext = () => {
-    if (currentPage === 'segments') {
+    if (currentPage === 'persona-audience') {
+      setCurrentPage('segments');
+    } else if (currentPage === 'segments') {
       setCurrentPage('profile');
     }
   };
@@ -53,6 +60,10 @@ function App() {
         />
 
         <div className="flex-1 overflow-auto bg-gray-50">
+          {currentPage === 'persona-audience' && (
+            <GenerateAudiencePersona />
+          )}
+
           {currentPage === 'segments' && (
             
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-2 mr-2">
@@ -278,6 +289,14 @@ function App() {
 
           {currentPage === 'brand-setup' && (
             <BrandAssetSetup />
+          )}
+
+          {currentPage === 'brand-voice' && (
+            <BrandVoice />
+          )}
+
+          {currentPage === 'brand-products' && (
+            <Products />
           )}
 
           {(currentPage === 'dashboard' || currentPage === 'campaigns' || currentPage === 'analytics' || currentPage === 'playbooks' || currentPage === 'settings') && (

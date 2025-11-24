@@ -3,37 +3,36 @@ import { Trash2 } from 'lucide-react';
 interface SocialMediaOption {
   name: string;
   icon: string;
-  color: string;
+  color?: string;
 }
 
 const socialMediaOptions: SocialMediaOption[] = [
-  { name: 'Microsoft Office 365', icon: '📊', color: 'bg-orange-50 border-orange-200' },
-  { name: 'Zoom', icon: '📹', color: 'bg-blue-50 border-blue-200' },
-  { name: 'Slack', icon: '💬', color: 'bg-purple-50 border-purple-200' },
-  { name: 'Trello', icon: '📋', color: 'bg-blue-50 border-blue-300' },
+  { name: 'Microsoft Office 365', icon: '📊'},
+  { name: 'Zoom', icon: '📹'},
+  { name: 'Slack', icon: '💬'},
+  { name: 'Trello', icon: '📋'},
 ];
 
 function UrlManagement() {
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-7xl mx-auto space-y-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+    <div className="bg-gray-50 mr-2 mb-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="mb-6">
-            <h1 className="text-2xl font-semibold text-gray-800 mb-1">Website URLs</h1>
-            <p className="text-sm text-gray-500">Add Your Main Designs And Landing Pages</p>
+            <h1 className="text-2xl font-semibold text-[#5D586C] mb-1">Website URLs</h1>
+            <p className="text-sm text-[#5D586C]">Add Your Main Designs And Landing Pages</p>
           </div>
 
-          <div className="border border-gray-200 rounded-lg p-6 mb-4">
+          <div className="border border-gray-200 rounded-lg p-3 mb-4">
             <div className="flex items-start justify-between mb-4">
-              <h2 className="text-base font-medium text-gray-700">Website 1</h2>
-              <button className="text-red-500 hover:text-red-600">
+              <h2 className="text-base font-medium text-[#5D586C]">Website 1</h2>
+              <button className="text-red-500 hover:text-red-600 bg-red-50 p-2 rounded-xl">
                 <Trash2 className="w-5 h-5" />
               </button>
             </div>
 
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#5D586C] mb-2">
                   Name
                 </label>
                 <input
@@ -43,7 +42,7 @@ function UrlManagement() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-[#5D586C] mb-2">
                   Category
                 </label>
                 <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white">
@@ -53,7 +52,7 @@ function UrlManagement() {
             </div>
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#5D586C] mb-2">
                 Website URL
               </label>
               <input
@@ -64,7 +63,7 @@ function UrlManagement() {
             </div>
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#5D586C] mb-2">
                 Description(Optional)
               </label>
               <input
@@ -80,26 +79,26 @@ function UrlManagement() {
                 id="verify-url"
                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
               />
-              <label htmlFor="verify-url" className="ml-2 text-sm text-gray-700">
+              <label htmlFor="verify-url" className="ml-2 text-sm text-[#5D586C]">
                 Automatically verify URL status
               </label>
             </div>
 
-            <button className="w-full py-2.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+            <button className="w-full py-2.5 border border-gray-300 bg-[#F3F4F6] rounded-lg text-sm font-medium text-[#5D586C] hover:bg-gray-50 transition-colors">
               + Add Another Website URL
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="grid grid-cols-2 gap-6 mt-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="mb-4">
               <h2 className="text-lg font-semibold text-gray-800 mb-1">Amazon Products</h2>
-              <p className="text-sm text-gray-500">Track Your Amazon Listing</p>
+              <p className="text-sm text-[#5D586C]">Track Your Amazon Listing</p>
             </div>
 
             <div className="border border-gray-200 rounded-lg p-4 mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#5D586C] mb-2">
                 Amazon Product URL
               </label>
               <input
@@ -115,7 +114,7 @@ function UrlManagement() {
                     id="monitor-price"
                     className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
-                  <label htmlFor="monitor-price" className="ml-2 text-sm text-gray-700">
+                  <label htmlFor="monitor-price" className="ml-2 text-sm text-[#5D586C]">
                     Monitor price changes
                   </label>
                 </div>
@@ -125,14 +124,14 @@ function UrlManagement() {
                     id="track-stock"
                     className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
-                  <label htmlFor="track-stock" className="ml-2 text-sm text-gray-700">
+                  <label htmlFor="track-stock" className="ml-2 text-sm text-[#5D586C]">
                     Track stock availability
                   </label>
                 </div>
               </div>
             </div>
 
-            <button className="w-full py-2.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+            <button className="w-full py-2.5 border border-gray-300 rounded-lg text-sm font-medium text-[#5D586C] hover:bg-gray-50 transition-colors">
               + Add Another Amazon Product
             </button>
           </div>
@@ -140,7 +139,7 @@ function UrlManagement() {
           <div className="bg-white rounded-lg border border-gray-200 p-6">
             <div className="mb-4">
               <h2 className="text-lg font-semibold text-gray-800 mb-1">Social Media Profiles</h2>
-              <p className="text-sm text-gray-500">Connect your social media accounts</p>
+              <p className="text-sm text-[#5D586C]">Connect your social media accounts</p>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
@@ -150,13 +149,12 @@ function UrlManagement() {
                   className={`flex items-center gap-3 p-3 border rounded-lg hover:shadow-sm transition-shadow ${option.color}`}
                 >
                   <span className="text-2xl">{option.icon}</span>
-                  <span className="text-sm font-medium text-gray-700">{option.name}</span>
+                  <span className="text-sm font-medium text-[#5D586C]">{option.name}</span>
                 </button>
               ))}
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }

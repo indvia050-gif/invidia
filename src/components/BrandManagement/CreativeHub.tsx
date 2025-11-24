@@ -1,9 +1,14 @@
 
+import { useState } from 'react';
+import CampaignLibraryPage from './CampaignLibraryPage';
+import WebsiteManagement from './WebsiteManagement';
+
 interface CreativeHubProps {
   onOpenSetup?: () => void;
 }
 
 const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
+  const [currentView, setCurrentView] = useState<'hub' | 'campaign' | 'website'>('hub');
   const assets = [
     {
       image: '/Brand.png',
@@ -35,6 +40,10 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
     const handleClick = () => {
       if (item.title === 'Brand Assets' && onOpenSetup) {
         onOpenSetup();
+      } else if (item.title === 'Campaign Library') {
+        setCurrentView('campaign');
+      } else if (item.title === 'Website & Links') {
+        setCurrentView('website');
       }
     };
 
@@ -61,8 +70,13 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
     );
   };
 
-  return (
-    <div className="bg-white rounded-xl border border-gray-200 max-w-7xl p-3 mb-2 mr-2">
+  if (currentView === 'campaign') {
+    return <CampaignLibraryPage />;
+  } else if (currentView === 'website') {
+    return <WebsiteManagement />;
+  } else {
+    return (
+      <div className="bg-white rounded-xl border border-gray-200 max-w-7xl p-3 mb-2 mr-2">
       <div className="mb-8">
         <h1 className="text-3xl font-semibold text-[#5D586C]">Creative Hub</h1>
         <p className="text-sm text-gray-500 mt-1">
@@ -108,6 +122,7 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
       </div>
     </div>
   );
+  }
 };
 
 export default CreativeHub;

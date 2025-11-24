@@ -1,9 +1,9 @@
 // Persona related constants
 export const tagColors = [
-  'bg-green-100 text-green-700',
-  'bg-red-100 text-red-700',
-  'bg-blue-100 text-blue-700',
-  'bg-yellow-100 text-yellow-700'
+  'border border-[#20FD39] text-[#20FD39]',
+  'border border-[#FF5861] text-[#FF5861]',
+  'border border-[#02B5FF] text-[#02B5FF]',
+  'border border-[#D99F00] text-[#D99F00]'
 ];
 
 export const topFeatures = [
@@ -100,7 +100,7 @@ export const menuItems = [
     hasChevron: true
   },
   {
-    id: 'segments' as const,
+    id: 'persona-audience' as const,
     icon: Users,
     label: 'Personas & Audience',
     description: null,
