@@ -53,7 +53,7 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
         className="bg-white rounded-xl border border-gray-200 p-6 flex flex-col transition hover:shadow-md"
       >
         <div className="flex items-start justify-between mb-6">
-            <img src={item.image} alt="" className="w-10 h-10 object-contain" />
+            <img src={item.image} alt="" className="w-12 h-12 object-contain" />
           <div className="px-3 py-1 bg-white border border-[#5087FF] text-[#5087FF] text-xs font-medium rounded-full">
             {item.count}
           </div>
@@ -62,7 +62,7 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
         <p className="text-sm text-gray-500 mb-6 flex-grow">{item.description}</p>
         <button
           onClick={handleClick}
-          className="w-full px-4 py-3 bg-[#5087FF] text-white rounded-lg font-medium hover:bg-[#3D6CE8]"
+          className="w-full px-4 py-2 bg-[#5087FF] text-white rounded-lg font-medium hover:bg-[#3D6CE8]"
         >
           {item.buttonText}
         </button>
@@ -107,7 +107,7 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 mb-4">
+        <div className="grid grid-cols-3 gap-6 mb-4">
           {assets.map(renderCard)}
         </div>
 
@@ -116,7 +116,7 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
           <p className="text-sm text-gray-500">Connect External Platforms And Services</p>
         </div>
 
-        <div className="grid grid-cols-1 max-w-md">
+        <div className="grid grid-cols-1 max-w-sm">
           {integrations.map(renderCard)}
         </div>
       </div>
