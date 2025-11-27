@@ -34,6 +34,13 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
       description: 'Track websites, Amazon links, and competitors',
       buttonText: 'Manage Assets',
     },
+    {
+      image: '/Brand-4.png',
+      count: 'connected',
+      title: 'Klaviyo Integration',
+      description: 'connect and sync with your Klaviyo account',
+      buttonText: 'Manage Assets',
+    },
   ];
 
   const renderCard = (item: any, index: number) => {
@@ -54,7 +61,7 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
       >
         <div className="flex items-start justify-between mb-6">
             <img src={item.image} alt="" className="w-12 h-12 object-contain" />
-          <div className="px-3 py-1 bg-white border border-[#5087FF] text-[#5087FF] text-xs font-medium rounded-full">
+          <div className={`px-3 py-1 bg-white border ${item.title === 'Klaviyo Integration' ? 'border-[#50FF50] text-[#50FF50]' : 'border-[#5087FF] text-[#5087FF]'} text-xs font-medium rounded-full`}>
             {item.count}
           </div>
         </div>
@@ -116,7 +123,7 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
           <p className="text-sm text-gray-500">Connect External Platforms And Services</p>
         </div>
 
-        <div className="grid grid-cols-1 max-w-sm">
+        <div className="flex gap-6">
           {integrations.map(renderCard)}
         </div>
       </div>
