@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import { fonts, aiColors, colors } from '../../utils/BrandManagementconstants';
+import { fonts, colorPalettes, aiRecommendedPalettes } from '../../utils/BrandManagementconstants';
 
 const BrandAssetSetup = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -133,43 +133,93 @@ const BrandAssetSetup = () => {
       )}
 
       {step === 2 && (
-        <div className="border border-gray-200 rounded-lg p-3">
+        <div className="border border-gray-200 rounded-lg p-6">
           <h2 className="text-2xl font-bold text-[#5D586C] mb-2">Define Brand Colors</h2>
-          <p className="text-sm text-[#5D586C] mb-8">Set your brand color palette for consistent use</p>
+          <p className="text-sm text-[#6F6B7D] mb-8">Set your brand color palette for consistent use</p>
 
-          <div className="mb-8">
-            <div className="flex justify-around items-center mb-8">
-              {colors.map((color) => (
-                <div key={color.id} className="flex flex-col items-center text-center">
-                  <div
-                    onClick={() => toggleSelection(selectedColors, setSelectedColors, color.id)}
-                    className={`w-24 h-24 rounded-lg mb-3 cursor-pointer border-4 transition ${
-                      selectedColors.has(color.id) ? 'border-[#5087FF]' : 'border-transparent hover:border-[#5087FF]'
-                    }`}
-                    style={{ backgroundColor: color.hex }}
-                  >
-                    <div className="flex items-center justify-center h-full text-white text-xs font-semibold">{color.hex}</div>
+          <div className="mb-12">
+            <div className="grid grid-cols-4 gap-6">
+              {colorPalettes.map((palette) => (
+                <div key={palette.id} className="relative">
+                  <div className="flex justify-center text-center mb-3 relative top-[14%] ">
+                    <h3 className="text-sm border bg-white rounded-lg text-[#5D586C] p-1">{palette.label}</h3>
                   </div>
-                  <p className="text-sm font-medium text-left text-gray-900">{color.name}</p>
+                  <div
+                    onClick={() => toggleSelection(selectedColors, setSelectedColors, palette.id)}
+                    className={`border rounded-xl overflow-hidden p-4 cursor-pointer transition ${
+                      selectedColors.has(palette.id) ? 'border-[#5087FF] shadow-lg' : 'border-gray-200 hover:border-[#5087FF]/50'
+                    }`}
+                  >
+                    <div className="flex gap-3">
+                      <div className="flex-1 ">
+                        <div className="text-xs text-gray-500 text-center bg-white">Main Color</div>
+                        <div
+                          className="h-[110px] flex items-end rounded-lg justify-center "
+                          style={{ backgroundColor: palette.mainColor.hex }}
+                        >
+                          <span className="text-xs border font-medium bg-white text-[#6F6B7D] px-2 relative top-2 rounded">
+                            {palette.mainColor.code}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-xs text-gray-500 text-center bg-white">Accent</div>
+                        <div 
+                          className="h-[110px] flex items-end rounded-lg justify-center"
+                          style={{ backgroundColor: palette.accentColor.hex }}
+                        >
+                           <span className="text-xs border font-medium bg-white text-[#6F6B7D] px-2 relative top-2 rounded">
+                            {palette.accentColor.code}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
+          </div>
 
-            <h3 className="text-lg font-semibold text-[#5D586C]">AI Recommended</h3>
-            <p className="text-sm text-[#5D586C] mb-6">AI Recommended color palette</p>
-            <div className="flex justify-around items-center mb-8">
-              {aiColors.map((color) => (
-                <div key={color.id} className="flex flex-col items-center text-center">
-                  <div
-                    onClick={() => toggleSelection(selectedColors, setSelectedColors, color.id)}
-                    className={`w-24 h-24 rounded-lg mb-3 cursor-pointer border-4 transition ${
-                      selectedColors.has(color.id) ? 'border-[#5087FF]' : 'border-transparent hover:border-[#5087FF]'
-                    }`}
-                    style={{ backgroundColor: color.hex }}
-                  >
-                    <div className="flex items-center justify-center h-full text-white text-xs font-semibold">{color.hex}</div>
+          <div>
+            <h3 className="text-xl font-semibold text-[#5D586C] mb-1">AI Recommended</h3>
+            <p className="text-sm text-[#6F6B7D] mb-6">AI Recommended color palette</p>
+            <div className="grid grid-cols-4 gap-6">
+              {aiRecommendedPalettes.map((palette) => (
+                <div key={palette.id} className="relative">
+                  <div className="flex justify-center text-center mb-3  relative top-[14%]">
+                    <h3 className="text-sm border bg-white rounded-lg text-[#5D586C] p-1">{palette.label}</h3>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">{color.name}</p>
+                  <div
+                    onClick={() => toggleSelection(selectedColors, setSelectedColors, palette.id)}
+                     className={`border rounded-xl overflow-hidden p-3 cursor-pointer transition ${
+                      selectedColors.has(palette.id) ? 'border-[#5087FF] shadow-lg' : 'border-gray-200 hover:border-[#5087FF]/50'
+                    }`}
+                  >
+                  <div className="flex gap-3">
+                      <div className="flex-1 ">
+                        <div className="text-xs text-gray-500 text-center bg-white">Main Color</div>
+                        <div
+                          className="h-[110px] flex items-end rounded-lg justify-center "
+                          style={{ backgroundColor: palette.mainColor.hex }}
+                        >
+                          <span className="text-xs border font-medium bg-white text-[#6F6B7D] px-2 relative top-2 rounded">
+                            {palette.mainColor.code}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-xs text-gray-500 text-center bg-white">Accent</div>
+                        <div 
+                          className="h-[110px] flex items-end rounded-lg justify-center"
+                          style={{ backgroundColor: palette.accentColor.hex }}
+                        >
+                           <span className="text-xs border font-medium bg-white text-[#6F6B7D] px-2 relative top-2 rounded">
+                            {palette.accentColor.code}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

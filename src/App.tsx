@@ -16,13 +16,13 @@ import { segments, customerMetrics, filterOptions, additionalFilters, customerTa
 import CreativeHub from './components/BrandManagement/CreativeHub';
 import GenerateAudiencePersona from './components/PersonaAndAudience/GenerateAudiencePersona';
 import BrandVoice from './components/BrandManagement/brandVoice/BrandVoice';
-import Products from './components/BrandManagement/Products';
+import { ProductManagement } from './components/BrandManagement/Products';
 
 function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isCreateSegmentModalOpen, setIsCreateSegmentModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState<'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'brand-setup' | 'brand-voice' | 'brand-products' | 'settings' | 'profile' | 'persona-audience'>('segments');
+  const [currentPage, setCurrentPage] = useState<'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'brand-setup' | 'brand-voice' | 'brand-products' | 'settings' | 'profile' | 'persona-audience'>('dashboard');
 
   const handleNavigate = (page: 'dashboard' | 'campaigns' | 'analytics' | 'segments' | 'playbooks' | 'brand' | 'brand-voice' | 'brand-products' | 'settings' | 'persona-audience') => {
     setCurrentPage(page);
@@ -293,7 +293,7 @@ function App() {
           )}
 
           {currentPage === 'brand-products' && (
-            <Products />
+             <ProductManagement />
           )}
 
           {(currentPage === 'dashboard' || currentPage === 'campaigns' || currentPage === 'analytics' || currentPage === 'playbooks' || currentPage === 'settings') && (

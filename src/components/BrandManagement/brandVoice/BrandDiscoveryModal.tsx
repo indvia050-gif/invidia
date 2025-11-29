@@ -197,13 +197,13 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
                 value={formData[step.id] || ''}
                 onChange={(e) => setFormData({ ...formData, [step.id]: e.target.value })}
                 placeholder="Tell us your story....."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-base"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-base"
                 rows={1}
               />
             </div>
             <div>
               <label className="block text-base font-medium text-[#6F6B7D] mb-3">What year did you launch?</label>
-              <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-base cursor-pointer">
+              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-base cursor-pointer">
                 <option>2001</option>
                 <option>2002</option>
                 <option>2003</option>
@@ -232,7 +232,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
               <div className="w-1/2">
                 <label className="block text-base font-medium text-[#6F6B7D] mb-2">Age Range</label>
                 <select
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-base cursor-pointer"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-base cursor-pointer"
                   value={targetCustomerData.ageRange}
                   onChange={e => setTargetCustomerData({ ...targetCustomerData, ageRange: e.target.value })}
                 >
@@ -245,7 +245,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
               <div className="w-1/2">
                 <label className="block text-base font-medium text-[#6F6B7D] mb-2">Income Level</label>
                 <select
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-base cursor-pointer"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-base cursor-pointer"
                   value={targetCustomerData.incomeLevel}
                   onChange={e => setTargetCustomerData({ ...targetCustomerData, incomeLevel: e.target.value })}
                 >
@@ -317,14 +317,14 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
                 <div key={idx} className="flex gap-4 mb-3 items-center">
                   <input
                     type="text"
-                    className="px-4 py-3 border border-gray-300 rounded-lg flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
+                    className="px-4 py-2 border border-gray-300 rounded-lg flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
                     placeholder="Competitor name"
                     value={c.name}
                     onChange={e => handleCompetitorChange(idx, 'name', e.target.value)}
                   />
                   <input
                     type="text"
-                    className="px-4 py-3 border border-gray-300 rounded-lg flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
+                    className="px-4 py-2 border border-gray-300 rounded-lg flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
                     placeholder="https://website.com"
                     value={c.website}
                     onChange={e => handleCompetitorChange(idx, 'website', e.target.value)}
@@ -345,7 +345,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
             <div>
               <label className="block text-base font-medium text-[#6F6B7D] mb-2">What makes you different from them?</label>
               <textarea
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-base"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-base"
                 rows={1}
                 placeholder="Describe your value position"
                 value={valuePosition}
@@ -355,7 +355,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
             <div>
               <label className="block text-base font-medium text-[#6F6B7D] mb-2">Which brands do you admire (even outside your industry)?</label>
               <input
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
                 placeholder="e.g., Apple..."
                 value={admiredBrands}
                 onChange={e => setAdmiredBrands(e.target.value)}
@@ -387,7 +387,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
             <div>
               <label className="block text-base font-medium text-[#6F6B7D] mb-2">Primary Segment</label>
               <select
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-base cursor-pointer"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-base cursor-pointer"
                 value={categoryData.primarySegment}
                 onChange={e => setCategoryData({ ...categoryData, primarySegment: e.target.value })}
               >
@@ -400,7 +400,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
             <div>
               <label className="block text-base font-medium text-[#6F6B7D] mb-2">Sub-segment</label>
               <input
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
                 placeholder="e.g., Skincare"
                 value={categoryData.subSegment}
                 onChange={e => setCategoryData({ ...categoryData, subSegment: e.target.value })}
@@ -409,7 +409,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
             <div>
               <label className="block text-base font-medium text-[#6F6B7D] mb-2">Target Niche</label>
               <input
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
                 placeholder="XYZ..."
                 value={categoryData.targetNiche}
                 onChange={e => setCategoryData({ ...categoryData, targetNiche: e.target.value })}
@@ -418,7 +418,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
             <div>
               <label className="block text-base font-medium text-[#6F6B7D] mb-2">Geographic Focus</label>
               <select
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-base cursor-pointer"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-base cursor-pointer"
                 value={categoryData.geographicFocus}
                 onChange={e => setCategoryData({ ...categoryData, geographicFocus: e.target.value })}
               >
@@ -485,7 +485,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
                   ...formData,
                   [step.id]: { ...formData[step.id], audience: e.target.value }
                 })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-base cursor-pointer"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-base cursor-pointer"
               >
                 <option>Select your audience size</option>
                 {audienceOptions.map((opt) => (
@@ -503,7 +503,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
                   ...formData,
                   [step.id]: { ...formData[step.id], growth: e.target.value }
                 })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-base cursor-pointer"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-base cursor-pointer"
               >
                 <option>Select your growth goal</option>
                 {growthGoals.map((opt) => (
@@ -575,13 +575,13 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
       <div className="bg-white rounded-2xl max-w-3xl w-full h-full sm:h-[90vh] md:h-[85vh] lg:h-[80vh] flex flex-col shadow-2xl relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 text-gray-400 hover:text-[#6F6B7D] transition-colors z-10"
+          className="absolute top-4 right-4 lg:top-2 lg:right-2 sm:top-6 sm:right-6 p-2 text-gray-400 hover:text-[#6F6B7D] transition-colors z-10"
         >
           <X className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
         <div className="flex flex-1  border-b overflow-hidden">
           {/* Left Sidebar - Steps Navigation */}
-          <div className="w-full sm:w-72 lg:w-80 p-2 rounded-lg overflow-y-auto bg-white flex-shrink-0">
+          <div className="w-full sm:w-72 lg:w-[260px] p-2 rounded-lg overflow-hidden bg-white flex-shrink-0">
             <div className="border p-2 rounded-lg space-y-1">
               {steps.map((s, idx) => (
                 <button
@@ -592,7 +592,7 @@ function BrandDiscoveryModal({ onClose }: BrandDiscoveryModalProps) {
                       : 'text-[#6F6B7D] hover:bg-gray-50'
                     }`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
                     <span className={`w-6 h-6 flex items-center justify-center text-sm font-medium rounded-full flex-shrink-0 ${completedSteps.includes(s.id)
                         ? 'bg-green-500 text-white'
                         : currentStep === idx

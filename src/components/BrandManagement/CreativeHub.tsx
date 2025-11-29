@@ -92,15 +92,15 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
       </div>
 
       <div className="bg-white rounded-xl border border-gray-200 grid grid-cols-3 gap-6 mb-8 ">
-        <div className="bg-white p-1 m-8 flex flex-col  border-r border-gray-200">
+        <div className="bg-white p-1 m-4 flex flex-col  border-r border-gray-200">
           <span className="text-2xl font-bold text-[#5D586C]">12</span>
           <span className="text-sm text-gray-600 mt-2">Brand Assets</span>
         </div>
-        <div className="bg-white p-1 m-8 flex flex-col  border-r border-gray-200">
+        <div className="bg-white p-1 m-4 flex flex-col  border-r border-gray-200">
           <span className="text-2xl font-bold text-[#5D586C]">48</span>
           <span className="text-sm text-gray-600 mt-2">Campaigns</span>
         </div>
-        <div className="bg-white p-1 m-8 flex flex-col  border-gray-200">
+        <div className="bg-white p-1 m-4 flex flex-col  border-gray-200">
           <span className="text-2xl font-bold text-[#5D586C]">3</span>
           <span className="text-sm text-gray-600 mt-2">Integrations</span>
         </div>
@@ -123,7 +123,7 @@ const CreativeHub = ({ onOpenSetup }: CreativeHubProps) => {
           <p className="text-sm text-gray-500">Connect External Platforms And Services</p>
         </div>
 
-        <div className="flex gap-6">
+        <div className="grid grid-cols-3 gap-6">
           {integrations.map(renderCard)}
         </div>
       </div>
