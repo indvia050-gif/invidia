@@ -5,7 +5,7 @@ interface Step {
   number: number;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: string;
 }
 
 const steps: Step[] = [
@@ -94,13 +94,10 @@ interface BrandIdentityProps {
 function BrandIdentity({ onBack }: BrandIdentityProps) {
   const [showModal, setShowModal] = useState(false);
 
-  if (showModal) {
-    return <BrandDiscoveryModal onClose={() => setShowModal(false)} />;
-  }
-
   return (
-    <div className="border rounded-xl bg-gray-50 p-3">
-      <div className="mb-3">
+    <>
+    <div className={`border ${showModal ? 'blur-sm' : ''} rounded-xl bg-gray-50 p-3 `}>
+      <div className="mb-3 ">
         <h1 className="text-3xl font-semibold text-[#5D586C] mb-2">
           Brand Identity
         </h1>
@@ -185,7 +182,13 @@ function BrandIdentity({ onBack }: BrandIdentityProps) {
           ))}
         </div>
       </div>
+
+   
     </div>
+       {showModal && (
+        <BrandDiscoveryModal onClose={() => setShowModal(false)} />
+      )}
+    </>
   );
 }
 
