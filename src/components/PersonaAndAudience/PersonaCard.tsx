@@ -1,5 +1,5 @@
 import { Check, Users } from "lucide-react";
-import { tagColors } from "../../utils/PersonaAudienceconstants";
+import { tagColors } from "@/utils/PersonaAudienceconstants";
 
 interface Persona {
   id: string;
@@ -23,7 +23,7 @@ const PersonaCard = ({ persona, isSelected, onClick }: { persona: Persona; isSel
           <span
             key={idx}
             className={` px-1 h-[2.5vh] rounded-2xl ${tagColors[idx % tagColors.length]}`}
-            style={{fontSize:'10px'}}
+            style={{ fontSize: '10px' }}
           >
             {tag}
           </span>

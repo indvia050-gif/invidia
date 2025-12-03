@@ -1,158 +1,27 @@
-// src/components/CanvasEditor.tsx
 import Konva from "konva";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Stage, Layer, Rect, Image as KImage, Transformer, Group } from "react-konva";
-import useImage from "use-image";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Stage, Layer, Transformer } from "react-konva";
+import DraggableImage from "./DraggableImage";
+import DraggableRect from "./DraggableItem";
+import DraggableText from "./DraggableText";
+import DraggableButton from "./DraggableButton";
+import DraggableGroup from "./DraggableGroup";
+import ModulesSidebar from "./ModulesSidebar";
+import ElementContextMenu from "./ElementContextMenu";
+import useId, { snap } from "@/utils/constants";
+import { ImageItem, Item, RectItem, TextItem, ButtonItem, GroupItem } from "@/utils/type";
+import { ModuleTemplate } from "@/utils/ModuleTemplate";
 
-type BaseItem = {
-    id: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    rotation?: number;
-};
-
-type RectItem = BaseItem & { type: "rect"; fill: string };
-type ImageItem = BaseItem & { type: "image"; src: string };
-
-type Item = RectItem | ImageItem;
-
-const GRID = 16;
-const snap = (v: number) => Math.round(v / GRID) * GRID;
-
-function useId(prefix = "") {
-    return prefix + Math.random().toString(36).slice(2, 9);
-}
-
-/* ---------------- Draggable rect component ---------------- */
-function DraggableRect({
-    item,
-    isSelected,
-    onSelect,
-    onChange,
-    trRef,
-}: {
-    item: RectItem;
-    isSelected: boolean;
-    onSelect: () => void;
-    onChange: (it: RectItem) => void;
-    trRef: React.RefObject<Konva.Transformer | null>;
-}) {
-    const shapeRef = useRef<Konva.Rect>(null);
-
-    useEffect(() => {
-        if (isSelected && trRef.current && shapeRef.current) {
-            trRef.current.nodes([shapeRef.current]);
-            trRef.current.getLayer()?.batchDraw();
-        }
-    }, [isSelected, trRef]);
-
-    return (
-        <>
-            <Rect
-                ref={shapeRef}
-                x={item.x}
-                y={item.y}
-                width={item.width}
-                height={item.height}
-                rotation={item.rotation ?? 0}
-                fill={item.fill}
-                draggable
-                onClick={onSelect}
-                onTap={onSelect}
-                onDragEnd={(e) => {
-                    onChange({ ...item, x: snap(e.target.x()), y: snap(e.target.y()) });
-                }}
-                onTransformEnd={() => {
-                    const node = shapeRef.current!;
-                    const scaleX = node.scaleX();
-                    const scaleY = node.scaleY();
-                    node.scaleX(1);
-                    node.scaleY(1);
-                    onChange({
-                        ...item,
-                        x: snap(node.x()),
-                        y: snap(node.y()),
-                        width: Math.max(8, Math.round(node.width() * scaleX)),
-                        height: Math.max(8, Math.round(node.height() * scaleY)),
-                        rotation: Math.round(node.rotation() || 0),
-                    });
-                }}
-            />
-        </>
-    );
-}
-
-/* ---------------- Draggable image component ---------------- */
-function DraggableImage({
-    item,
-    isSelected,
-    onSelect,
-    onChange,
-    trRef,
-}: {
-    item: ImageItem;
-    isSelected: boolean;
-    onSelect: () => void;
-    onChange: (it: ImageItem) => void;
-    trRef: React.RefObject<Konva.Transformer | null>;
-}) {
-    const imgRef = useRef<Konva.Image>(null);
-    const [img] = useImage(item.src, "anonymous");
-
-    useEffect(() => {
-        if (isSelected && trRef.current && imgRef.current) {
-            trRef.current.nodes([imgRef.current]);
-            trRef.current.getLayer()?.batchDraw();
-        }
-    }, [isSelected, trRef]);
-
-    return (
-        <>
-            <KImage
-                ref={imgRef}
-                image={img}
-                x={item.x}
-                y={item.y}
-                width={item.width}
-                height={item.height}
-                rotation={item.rotation ?? 0}
-                draggable
-                onClick={onSelect}
-                onTap={onSelect}
-                onDragEnd={(e) => onChange({ ...item, x: snap(e.target.x()), y: snap(e.target.y()) })}
-                onTransformEnd={() => {
-                    const node = imgRef.current!;
-                    const scaleX = node.scaleX();
-                    const scaleY = node.scaleY();
-                    node.scaleX(1);
-                    node.scaleY(1);
-                    onChange({
-                        ...item,
-                        x: snap(node.x()),
-                        y: snap(node.y()),
-                        width: Math.max(8, Math.round(node.width() * scaleX)),
-                        height: Math.max(8, Math.round(node.height() * scaleY)),
-                    });
-                }}
-            />
-        </>
-    );
-}
-
-/* ---------------- CanvasEditor ---------------- */
-export default function CanvasEditor() {
+function CanvasEditor() {
     const stageWidth = 600;
     const stageHeight = 640;
 
-    const [items, setItems] = useState<Item[]>(() => [
-        { id: useId("r_"), type: "rect", x: 40, y: 40, width: 140, height: 90, fill: "#60a5fa" },
-        { id: useId("r_"), type: "rect", x: 220, y: 120, width: 120, height: 80, fill: "#fb923c" },
-    ]);
+    const [items, setItems] = useState<Item[]>(() => []);
     const [selectedId, setSelectedId] = useState<string | null>(null);
+    const [menuPosition, setMenuPosition] = useState<{ x: number; y: number } | null>(null);
     const trRef = useRef<Konva.Transformer>(null);
     const stageRef = useRef<Konva.Stage>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     // Add rect
     const handleAddRect = useCallback(() => {
@@ -188,6 +57,61 @@ export default function CanvasEditor() {
         if (!selectedId) return;
         setItems((s) => s.filter((it) => it.id !== selectedId));
         setSelectedId(null);
+        setMenuPosition(null);
+        trRef.current?.nodes([]);
+    }, [selectedId]);
+
+    // Move item up (nudge)
+    const moveItemUp = useCallback(() => {
+        if (!selectedId) return;
+        setItems((s) =>
+            s.map((it) => (it.id === selectedId ? { ...it, y: it.y - 10 } : it))
+        );
+    }, [selectedId]);
+
+    // Move item down (nudge)
+    const moveItemDown = useCallback(() => {
+        if (!selectedId) return;
+        setItems((s) =>
+            s.map((it) => (it.id === selectedId ? { ...it, y: it.y + 10 } : it))
+        );
+    }, [selectedId]);
+
+    // Duplicate selected item
+    const duplicateItem = useCallback(() => {
+        if (!selectedId) return;
+        const item = items.find((it) => it.id === selectedId);
+        if (!item) return;
+
+        const cloneItem = (original: Item): Item => {
+            const base = {
+                ...original,
+                id: useId(original.type.charAt(0) + "_"),
+                x: original.x + 20,
+                y: original.y + 20,
+            };
+
+            if (original.type === "group") {
+                return {
+                    ...base,
+                    children: original.children.map(cloneItem),
+                } as GroupItem;
+            }
+
+            return base;
+        };
+
+        const duplicate = cloneItem(item);
+        setItems((s) => [...s, duplicate]);
+        setSelectedId(duplicate.id);
+    }, [selectedId, items]);
+
+    // Toggle badge on selected item
+    const toggleBadge = useCallback(() => {
+        if (!selectedId) return;
+        setItems((s) =>
+            s.map((it) => (it.id === selectedId ? { ...it, badge: !it.badge } : it))
+        );
     }, [selectedId]);
 
     // Export PNG
@@ -198,6 +122,68 @@ export default function CanvasEditor() {
         a.href = uri;
         a.download = "canvas.png";
         a.click();
+    }, []);
+
+    // Handle module drag start from sidebar
+    const handleModuleDragStart = useCallback((e: React.DragEvent, module: ModuleTemplate) => {
+        e.dataTransfer.setData("application/json", JSON.stringify(module));
+        e.dataTransfer.effectAllowed = "copy";
+    }, []);
+
+    // Handle drop on canvas
+    const handleCanvasDrop = useCallback((e: React.DragEvent) => {
+        e.preventDefault();
+
+        const moduleData = e.dataTransfer.getData("application/json");
+        if (moduleData) {
+            try {
+                const module: ModuleTemplate = JSON.parse(moduleData);
+                const containerRect = containerRef.current?.getBoundingClientRect();
+                const stageRect = stageRef.current?.container().getBoundingClientRect();
+
+                if (containerRect && stageRect) {
+                    // Calculate drop position relative to stage
+                    const x = snap(e.clientX - stageRect.left);
+                    const y = snap(e.clientY - stageRect.top);
+
+                    // Clone module items with new IDs and adjusted positions
+                    const cloneItems = (items: Item[], offsetX: number, offsetY: number): Item[] => {
+                        return items.map(item => {
+                            const baseClone = {
+                                ...item,
+                                id: useId(item.type.charAt(0) + "_"),
+                                x: item.x + offsetX,
+                                y: item.y + offsetY,
+                            };
+
+                            if (item.type === "group") {
+                                return {
+                                    ...baseClone,
+                                    children: cloneItems(item.children, 0, 0),
+                                } as GroupItem;
+                            }
+
+                            return baseClone;
+                        });
+                    };
+
+                    const newItems = cloneItems(module.items, x, y);
+                    setItems((s) => [...s, ...newItems]);
+
+                    // Select the first item
+                    if (newItems.length > 0) {
+                        setSelectedId(newItems[0].id);
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to parse module data:", error);
+            }
+        }
+    }, []);
+
+    const handleCanvasDragOver = useCallback((e: React.DragEvent) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "copy";
     }, []);
 
     // handle external drops (image)
@@ -227,27 +213,70 @@ export default function CanvasEditor() {
         // clicked on empty area
         if (e.target === e.target.getStage()) {
             setSelectedId(null);
+            setMenuPosition(null);
             trRef.current?.nodes([]);
         }
     };
 
-    // precompute grid lines for rendering (small rectangles/lines)
-    // const gridLines = useMemo(() => {
-    //     const lines: React.ReactElement[] = [];
-    //     for (let x = 0; x < stageWidth; x += GRID) {
-    //         lines.push(<Rect key={`vx-${x}`} x={x} y={0} width={1} height={stageHeight} fill="#eef2ff" opacity={0.7} />);
-    //     }
-    //     for (let y = 0; y < stageHeight; y += GRID) {
-    //         lines.push(<Rect key={`hy-${y}`} x={0} y={y} width={stageWidth} height={1} fill="#eef2ff" opacity={0.7} />);
-    //     }
-    //     return lines;
-    // }, [stageWidth, stageHeight]);
+    // Update menu position when selection changes
+    useEffect(() => {
+        if (!selectedId || !stageRef.current) {
+            setMenuPosition(null);
+            return;
+        }
+
+        const selectedItem = items.find((it) => it.id === selectedId);
+        if (!selectedItem) {
+            setMenuPosition(null);
+            return;
+        }
+
+        const stageRect = stageRef.current.container().getBoundingClientRect();
+        const menuX = stageRect.left + selectedItem.x - 60; // 60px left of element
+        const menuY = stageRect.top + selectedItem.y;
+
+        setMenuPosition({ x: menuX, y: menuY });
+    }, [selectedId, items]);
+
+    // Render item based on type
+    const renderItem = (item: Item) => {
+        const itemProps = {
+            key: item.id,
+            item,
+            isSelected: selectedId === item.id,
+            onSelect: () => setSelectedId(item.id),
+            trRef,
+        };
+
+        switch (item.type) {
+            case "rect":
+                return <DraggableRect {...itemProps} item={item as RectItem} onChange={(next) => updateItem(next)} />;
+            case "image":
+                return <DraggableImage {...itemProps} item={item as ImageItem} onChange={(next) => updateItem(next)} />;
+            case "text":
+                return <DraggableText {...itemProps} item={item as TextItem} onChange={(next) => updateItem(next)} />;
+            case "button":
+                return <DraggableButton {...itemProps} item={item as ButtonItem} onChange={(next) => updateItem(next)} />;
+            case "group":
+                return <DraggableGroup {...itemProps} item={item as GroupItem} onChange={(next) => updateItem(next)} />;
+            default:
+                return null;
+        }
+    };
 
     return (
-        <div className="flex justify-center items-center min-h-[600px] w-full">
-            {/* Canvas */}
-            <div className="bg-white rounded-lg shadow-sm p-3 max-w-fit">
-                <div className="border border-slate-100 rounded">
+        <div className="flex h-screen w-full">
+            {/* Modules Sidebar */}
+            <ModulesSidebar onModuleDragStart={handleModuleDragStart} />
+
+            {/* Canvas Area */}
+            <div
+                ref={containerRef}
+                className="flex-1 flex justify-center items-center min-h-[600px] bg-gray-100"
+                onDrop={handleCanvasDrop}
+                onDragOver={handleCanvasDragOver}
+            >
+                <div className="bg-white shadow-sm p-3 max-w-fit border border-gray-200">
                     <Stage
                         width={stageWidth}
                         height={stageHeight}
@@ -256,31 +285,8 @@ export default function CanvasEditor() {
                         ref={stageRef}
                     >
                         <Layer>
-                            {/* grid */}
-                            {/* {gridLines} */}
-
-                            {/* render items -- we attach the same Transformer via trRef when selected */}
-                            {items.map((it) =>
-                                it.type === "rect" ? (
-                                    <DraggableRect
-                                        key={it.id}
-                                        item={it}
-                                        isSelected={selectedId === it.id}
-                                        onSelect={() => setSelectedId(it.id)}
-                                        onChange={(next) => updateItem(next)}
-                                        trRef={trRef}
-                                    />
-                                ) : (
-                                    <DraggableImage
-                                        key={it.id}
-                                        item={it}
-                                        isSelected={selectedId === it.id}
-                                        onSelect={() => setSelectedId(it.id)}
-                                        onChange={(next) => updateItem(next)}
-                                        trRef={trRef}
-                                    />
-                                )
-                            )}
+                            {/* render items */}
+                            {items.map(renderItem)}
 
                             {/* single transformer (reused) */}
                             <Transformer
@@ -299,7 +305,26 @@ export default function CanvasEditor() {
                         </Layer>
                     </Stage>
                 </div>
+
+                {/* Element Context Menu */}
+                {menuPosition && selectedId && (() => {
+                    const selectedItem = items.find((it) => it.id === selectedId);
+                    return (
+                        <ElementContextMenu
+                            position={menuPosition}
+                            hasBadge={selectedItem?.badge || false}
+                            onMoveUp={moveItemUp}
+                            onMoveDown={moveItemDown}
+                            onToggleBadge={toggleBadge}
+                            onDuplicate={duplicateItem}
+                            onDelete={deleteSelected}
+                            canMoveUp={true}
+                            canMoveDown={true}
+                        />
+                    );
+                })()}
             </div>
         </div>
     );
 }
+export default CanvasEditor;
