@@ -17,6 +17,7 @@ import CreativeHub from './components/BrandManagement/CreativeHub';
 import GenerateAudiencePersona from './components/PersonaAndAudience/GenerateAudiencePersona';
 import BrandVoice from './components/BrandManagement/brandVoice/BrandVoice';
 import { ProductManagement } from './components/BrandManagement/Products';
+import CanvasEditor from './components/CampaignCanvas/CanvasEditor';
 
 function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -65,101 +66,101 @@ function App() {
           )}
 
           {currentPage === 'segments' && (
-            
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-2 mr-2">
-                <div className="mb-6">
+
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-2 mr-2">
+              <div className="mb-6">
                 <div className="flex items-center gap-2 text-gray-500 mb-2">
                   <Users className="w-5 h-5" />
                   <h1 className="text-2xl font-semibold text-[#5D586C]">Audience Segments</h1>
                 </div>
                 <p className="text-sm text-gray-500">Automatically Updated Customer Groups For Targeting And Messaging.</p>
               </div>
-                <div className= "py-7 px-4 border-b border-gray-200 flex items-center justify-between gap-4">
-                  <div className="flex-1 relative">
-                    <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
-                    <input
-                      type="text"
-                      placeholder="Search..."
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg "
-                    />
-                  </div>
-                  <button
-                    onClick={() => setIsSettingsModalOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2 text-[#6F6B7D] hover:bg-gray-100 rounded-lg"
-                  >
-                    <Plus className="w-4 h-4" />
-                    <span className="text-sm font-medium">Create Segmentation settings</span>
-                  </button>
-                  <button
-                    onClick={() => setIsCreateSegmentModalOpen(true)}
-                    className="px-4 py-2 bg-[#5087FF] text-white rounded-lg font-medium hover:bg-[#3D6CE8]"
-                  >
-                    Create Segment
-                  </button>
+              <div className="py-7 px-4 border-b border-gray-200 flex items-center justify-between gap-4">
+                <div className="flex-1 relative">
+                  <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg "
+                  />
                 </div>
+                <button
+                  onClick={() => setIsSettingsModalOpen(true)}
+                  className="flex items-center gap-2 px-4 py-2 text-[#6F6B7D] hover:bg-gray-100 rounded-lg"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span className="text-sm font-medium">Create Segmentation settings</span>
+                </button>
+                <button
+                  onClick={() => setIsCreateSegmentModalOpen(true)}
+                  className="px-4 py-2 bg-[#5087FF] text-white rounded-lg font-medium hover:bg-[#3D6CE8]"
+                >
+                  Create Segment
+                </button>
+              </div>
 
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead className="bg-gray-50 border-b border-gray-200">
-                      <tr>
-                        <th className="w-12 px-6 py-3"></th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Segment Name
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Type
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Size
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Last Updated
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Actions
-                        </th>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th className="w-12 px-6 py-3"></th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Segment Name
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Type
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Size
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Last Updated
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {segments.map((segment) => (
+                      <tr key={segment.id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4">
+                          <input
+                            type="checkbox"
+                            className="w-4 h-4 text-[#5087FF] border-gray-300 rounded"
+                          />
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm font-medium text-[#5087FF] hover:text-[#3D6CE8] cursor-pointer">
+                            {segment.name}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm text-[#6F6B7D]">{segment.type}</span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm text-[#5D586C]">{segment.size}</span>
+                            {segment.hasIndicator && (
+                              <div className="w-1 h-1 bg-red-500 rounded-full"></div>
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            {segment.updated}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right">
+                          <button className="text-gray-400 hover:text-[#6F6B7D]">
+                            <MoreVertical className="w-5 h-5" />
+                          </button>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {segments.map((segment) => (
-                        <tr key={segment.id} className="hover:bg-gray-50">
-                          <td className="px-6 py-4">
-                            <input
-                              type="checkbox"
-                              className="w-4 h-4 text-[#5087FF] border-gray-300 rounded"
-                            />
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="text-sm font-medium text-[#5087FF] hover:text-[#3D6CE8] cursor-pointer">
-                              {segment.name}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="text-sm text-[#6F6B7D]">{segment.type}</span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="flex items-center gap-2">
-                              <span className="text-sm text-[#5D586C]">{segment.size}</span>
-                              {segment.hasIndicator && (
-                                <div className="w-1 h-1 bg-red-500 rounded-full"></div>
-                              )}
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                              {segment.updated}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-right">
-                            <button className="text-gray-400 hover:text-[#6F6B7D]">
-                              <MoreVertical className="w-5 h-5" />
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
 
@@ -216,68 +217,68 @@ function App() {
                 </div>
               </div>
 
-                <div className="px-1 py-4 flex items-center justify-between">
-                  <div className="flex relative w-full">
-                    <Search className="w-4 h-4 text-gray-200 absolute left-2 top-1/2 transform -translate-y-1/2" />
-                    <input
-                      type="text"
-                      placeholder="Search..."
-                      className="w-full pl-8 pr-4 py-2 border border-gray-200 rounded-lg "
-                    />
-                  </div>
-                  <div className="flex items-center gap-2 ml-4">
-                    <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 text-[#6F6B7D] rounded-lg hover:bg-gray-50">
-                      <Filter className="w-4 h-4" />
-                      <span className="text-sm">Filter</span>
-                    </button>
-                    <button className="flex items-center gap-2 px-4 py-2 bg-[#5087FF] text-white rounded-lg font-medium hover:bg-[#3D6CE8]">
-                      <span className="text-sm">Export</span>
-                    </button>
-                  </div>
+              <div className="px-1 py-4 flex items-center justify-between">
+                <div className="flex relative w-full">
+                  <Search className="w-4 h-4 text-gray-200 absolute left-2 top-1/2 transform -translate-y-1/2" />
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full pl-8 pr-4 py-2 border border-gray-200 rounded-lg "
+                  />
                 </div>
-
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead className="bg-gray-50">
-                        <tr>
-                          <th className="w-12 px-1 py-3"></th>
-                          {customerTableHeaders.map((header, idx) => (
-                            <th key={idx} className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              {header}
-                            </th>
-                          ))}
-                        </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200 mb-2">
-                      {dummyCustomers.map((customer, i) => (
-                        <tr key={i} className="hover:bg-gray-50">
-                          <td className="px-6 py-4">
-                            <input
-                              type="checkbox"
-                              className="w-4 h-4 text-[#5087FF] border-gray-300 rounded"
-                            />
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="text-sm font-medium text-[#5087FF] hover:text-[#3D6CE8] cursor-pointer">{customer.id}</span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="text-sm text-[#6F6B7D]">{customer.name}</span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="text-sm text-[#6F6B7D]">{customer.email}</span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="text-sm text-[#6F6B7D]">{customer.phone}</span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="text-sm text-[#6F6B7D]">{customer.city}</span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="flex items-center gap-2 ml-4">
+                  <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 text-[#6F6B7D] rounded-lg hover:bg-gray-50">
+                    <Filter className="w-4 h-4" />
+                    <span className="text-sm">Filter</span>
+                  </button>
+                  <button className="flex items-center gap-2 px-4 py-2 bg-[#5087FF] text-white rounded-lg font-medium hover:bg-[#3D6CE8]">
+                    <span className="text-sm">Export</span>
+                  </button>
                 </div>
               </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="w-12 px-1 py-3"></th>
+                      {customerTableHeaders.map((header, idx) => (
+                        <th key={idx} className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200 mb-2">
+                    {dummyCustomers.map((customer, i) => (
+                      <tr key={i} className="hover:bg-gray-50">
+                        <td className="px-6 py-4">
+                          <input
+                            type="checkbox"
+                            className="w-4 h-4 text-[#5087FF] border-gray-300 rounded"
+                          />
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm font-medium text-[#5087FF] hover:text-[#3D6CE8] cursor-pointer">{customer.id}</span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm text-[#6F6B7D]">{customer.name}</span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm text-[#6F6B7D]">{customer.email}</span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm text-[#6F6B7D]">{customer.phone}</span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm text-[#6F6B7D]">{customer.city}</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           )}
 
           {currentPage === 'brand' && (
@@ -293,10 +294,13 @@ function App() {
           )}
 
           {currentPage === 'brand-products' && (
-             <ProductManagement />
+            <ProductManagement />
+          )}
+          {currentPage === 'campaigns' && (
+            <CanvasEditor />
           )}
 
-          {(currentPage === 'dashboard' || currentPage === 'campaigns' || currentPage === 'analytics' || currentPage === 'playbooks' || currentPage === 'settings') && (
+          {(currentPage === 'dashboard' || currentPage === 'analytics' || currentPage === 'playbooks' || currentPage === 'settings') && (
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <h2 className="text-2xl font-bold text-[#5D586C] mb-2">{currentPage.charAt(0).toUpperCase() + currentPage.slice(1)} Page</h2>
