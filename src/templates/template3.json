@@ -1,0 +1,56 @@
+{
+  "id": "gold-watch-1080x1920",
+  "title": "Gold Watch – Editorial",
+  "canvas": { "width": 1080, "height": 1920, "background": "#F2EDE6" },
+  "variables": {
+    "kicker":     { "label": "Kicker", "default": "SPECIAL EDITION" },
+    "title1":     { "label": "Title line 1", "default": "GOLD" },
+    "title2":     { "label": "Title line 2", "default": "LUXURY" },
+    "cta":        { "label": "CTA", "default": "ORDER NOW" },
+    "site":       { "label": "Website", "default": "REALLYGREATSITE.COM" },
+    "accent":     { "label": "Accent", "default": "#B08968" },
+    "ctaFill":    { "label": "CTA Fill", "default": "#C8A47B" },
+    "productSrc": { "label": "Product Image URL", "default": "https://picsum.photos/seed/watch/900/1200" }
+  },
+  "layers": [
+    {
+      "id": "bg-grad",
+      "type": "rect",
+      "x": 0, "y": 0, "width": 1080, "height": 1920,
+      "locked": true,
+      "fillLinearGradientStartPoint": { "x": 0, "y": 0 },
+      "fillLinearGradientEndPoint":   { "x": 0, "y": 1920 },
+      "fillLinearGradientColorStops": [0, "#F7F1E9", 1, "#EDE4D8"]
+    },
+
+    { "id": "leaf1", "type": "rect", "x": -50, "y": 200, "width": 1180, "height": 400,
+      "fillLinearGradientStartPoint": { "x": 0, "y": 0 },
+      "fillLinearGradientEndPoint":   { "x": 1180, "y": 0 },
+      "fillLinearGradientColorStops": [0, "#ffffff08", 0.5, "#ffffff22", 1, "#ffffff00" ],
+      "rotation": -10, "locked": true, "listening": false
+    },
+    { "id": "leaf2", "type": "rect", "x": -100, "y": 580, "width": 1200, "height": 420,
+      "fillLinearGradientStartPoint": { "x": 0, "y": 0 },
+      "fillLinearGradientEndPoint":   { "x": 1200, "y": 0 },
+      "fillLinearGradientColorStops": [0, "#ffffff05", 0.5, "#ffffff18", 1, "#ffffff00" ],
+      "rotation": -10, "locked": true, "listening": false
+    },
+
+    { "id": "kicker", "type": "text", "x": 120, "y": 140, "text": "{{kicker}}", "fontFamily": "Inter", "fontSize": 36, "fill": "#6B5E54", "align": "center", "width": 840, "letterSpacing": 2 },
+
+    { "id": "title1", "type": "text", "x": 120, "y": 210, "text": "{{title1}}", "fontFamily": "Georgia", "fontSize": 132, "fill": "#3A2F27", "align": "center", "width": 840, "letterSpacing": 6 },
+    { "id": "title2", "type": "text", "x": 120, "y": 350, "text": "{{title2}}", "fontFamily": "Georgia", "fontSize": 132, "fill": "#3A2F27", "align": "center", "width": 840, "letterSpacing": 6 },
+
+    { "id": "product", "type": "image", "src": "{{productSrc}}", "x": 300, "y": 520, "width": 520, "height": 820, "name": "Product" },
+
+    { "id": "like-badge", "type": "circle", "x": 740, "y": 600, "radius": 42, "fill": "#FF3B30", "shadowColor": "#00000033", "shadowBlur": 12 },
+    { "id": "like-heart", "type": "text", "x": 704, "y": 574, "text": "❤", "fontFamily": "Inter", "fontSize": 46, "fill": "#ffffff", "width": 72, "align": "center" },
+
+    { "id": "drop-shadow", "type": "ellipse", "x": 560, "y": 1320, "radiusX": 260, "radiusY": 38, "fill": "#00000022", "blurRadius": 18, "opacity": 0.45, "listening": false },
+
+    { "id": "cta", "type": "rect", "x": 360, "y": 1440, "width": 360, "height": 90, "cornerRadius": 12, "fill": "{{ctaFill}}" },
+    { "id": "cta-text", "type": "text", "x": 360, "y": 1458, "width": 360, "text": "{{cta}}", "fontFamily": "Inter", "fontSize": 34, "fill": "#2B211A", "align": "center", "fontStyle": "bold" },
+
+    { "id": "site", "type": "text", "x": 120, "y": 1660, "text": "{{site}}", "fontFamily": "Inter", "fontSize": 30, "fill": "#6B5E54", "align": "center", "width": 840 }
+  ]
+}

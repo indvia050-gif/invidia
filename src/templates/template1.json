@@ -1,0 +1,45 @@
+{
+  "id": "watch-promo-1080x1920",
+  "title": "Watch Promo – Orange",
+  "canvas": { "width": 1080, "height": 1920, "background": "#ffffff" },
+  "variables": {
+    "logoText":   { "label": "Logo", "default": "LOGO" },
+    "handle":     { "label": "Handle", "default": "@reallygreatsite" },
+    "h1":         { "label": "Headline line 1", "default": "IT'S YOUR" },
+    "h2":         { "label": "Headline line 2", "default": "TIME NOW." },
+    "subhead":    { "label": "Subhead", "default": "NEW SMART WATCH" },
+    "cta":        { "label": "CTA", "default": "Buy Now" },
+    "productSrc": { "label": "Product Image URL", "default": "https://png.pngtree.com/png-vector/20230501/ourmid/pngtree-sneakers-running-shoes-color-png-image_7078201.png" },
+    "baseSrc":    { "label": "Base Image URL", "default": "https://dummyimage.com/580x220/000/fff.png&text=Base" },
+    "accent":     { "label": "Accent Color", "default": "#F25F25" }
+  },
+  "layers": [
+    {
+      "id": "bg-grad",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "width": 1080,
+      "height": 1920,
+      "locked": true,
+      "fillLinearGradientStartPoint": { "x": 0, "y": 0 },
+      "fillLinearGradientEndPoint":   { "x": 0, "y": 1920 },
+      "fillLinearGradientColorStops": [0, "#FFEFE6", 0.6, "#FFD8C4", 1, "#FFC7AA"]
+    },
+
+    { "id": "logoText", "type": "text", "x": 72, "y": 96,  "text": "{{logoText}}", "fontFamily": "Inter", "fontSize": 36,  "fill": "#FFFFFF", "name": "Logo", "shadowColor": "#00000033", "shadowBlur": 8 },
+    { "id": "handle",   "type": "text", "x": 72, "y": 140, "text": "{{handle}}",   "fontFamily": "Inter", "fontSize": 28,  "fill": "#FFFFFF", "opacity": 0.85 },
+
+    { "id": "h1", "type": "text", "x": 72, "y": 280, "text": "{{h1}}", "fontFamily": "Inter", "fontSize": 124, "fill": "{{accent}}", "width": 680, "align": "left", "name": "Headline 1" },
+    { "id": "h2", "type": "text", "x": 72, "y": 420, "text": "{{h2}}", "fontFamily": "Inter", "fontSize": 124, "fill": "{{accent}}", "width": 680, "align": "left", "name": "Headline 2" },
+
+    { "id": "sub",     "type": "text", "x": 72,  "y": 610, "text": "{{subhead}}", "fontFamily": "Inter", "fontSize": 40,  "fill": "{{accent}}", "opacity": 0.95 },
+
+    { "id": "cta-btn",  "type": "rect", "x": 72,  "y": 680, "width": 240, "height": 84, "fill": "{{accent}}", "cornerRadius": 14, "name": "CTA Button" },
+    { "id": "cta-text", "type": "text", "x": 72,  "y": 700, "text": "{{cta}}",     "fontFamily": "Inter", "fontSize": 36,  "fill": "#FFFFFF", "width": 240, "align": "center", "name": "CTA Text" },
+
+    { "id": "base",    "type": "image", "src": "{{baseSrc}}",    "x": 250, "y": 1280, "width": 580, "height": 220, "name": "Base" },
+    { "id": "product", "type": "image", "src": "{{productSrc}}", "x": 450, "y": 820,  "width": 220, "height": 420, "name": "Product" }
+  ]
+}
+

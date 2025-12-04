@@ -1,0 +1,47 @@
+{
+  "id": "module-card-template",
+  "name": "Item Recommendation Module",
+  "canvas": { "width": 1080, "height": 720, "background": "#F3F4F6" },
+  "layers": [
+    {
+      "id": "card-bg",
+      "type": "rect",
+      "x": 40,
+      "y": 150,
+      "width": 1000,
+      "height": 280,
+      "cornerRadius": 20,
+      "fill": "#FFFFFF",
+      "shadowColor": "#00000033",
+      "shadowBlur": 12,
+      "shadowOffsetY": 4,
+      "zIndex": 1
+    },
+    {
+      "id": "product-image",
+      "type": "image",
+      "src": "https://picsum.photos/seed/product/200/200",
+      "x": 80,
+      "y": 190,
+      "width": 160,
+      "height": 160,
+      "cornerRadius": 16,
+      "zIndex": 2
+    },
+    {
+      "id": "headline",
+      "type": "text",
+      "text": "Headline",
+      "x": 280,
+      "y": 250,
+      "width": 720,
+      "height": 60,
+      "fontFamily": "Inter",
+      "fontSize": 42,
+      "fill": "#111827",
+      "fontStyle": "bold",
+      "align": "left",
+      "zIndex": 2
+    }
+  ]
+}

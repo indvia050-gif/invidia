@@ -1,0 +1,104 @@
+
+{
+  "id": "category_recommendation_block",
+  "name": "Category Recommendation Block",
+  "canvas": {
+    "width": 1080,
+    "height": 800,
+    "background": "#F3F4F6"
+  },
+  "layers": [
+    {
+      "id": "card-bg",
+      "type": "rect",
+      "x": 150,
+      "y": 100,
+      "width": 780,
+      "height": 600,
+      "cornerRadius": 24,
+      "fill": "#FFFFFF",
+      "shadowColor": "#00000033",
+      "shadowBlur": 16,
+      "shadowOffsetY": 4,
+      "zIndex": 1
+    },
+    {
+      "id": "product-image",
+      "type": "image",
+      "src": "https://imagefordraganddrop.bestworks.cloud/temp_banner.png",
+      "x": 150,
+      "y": 100,
+      "width": 780,
+      "height": 320,
+      "cornerRadius": 24,
+      "zIndex": 2
+    },
+    {
+      "id": "content-bg",
+      "type": "rect",
+      "x": 150,
+      "y": 420,
+      "width": 780,
+      "height": 280,
+      "fill": "#FFFFFF",
+      "cornerRadius": 24,
+      "zIndex": 2
+    },
+    {
+      "id": "headline",
+      "type": "text",
+      "text": "No Plans. Just Pines",
+      "x": 200,
+      "y": 450,
+      "width": 680,
+      "height": 80,
+      "fontFamily": "Inter",
+      "fontSize": 48,
+      "fontStyle": "bold",
+      "fill": "#1F2937",
+      "align": "center",
+      "zIndex": 3
+    },
+      {
+      "id": "description",
+      "type": "text",
+      "text": "Escape the noise. Rediscover the quiet art of slowing down in your favorite knit, beneath the pines.",
+      "x": 200,
+      "y": 505,
+      "width": 680,
+      "height": 60,
+      "fontFamily": "Inter",
+      "fontSize": 18,
+      "fontStyle": "normal",
+      "fill": "#6B7280",
+      "align": "center",
+      "zIndex": 3
+    },
+    {
+      "id": "button-bg",
+      "type": "rect",
+      "x": 380,
+      "y": 560,
+      "width": 320,
+      "height": 70,
+      "cornerRadius": 20,
+      "fill": "#de554f",
+      "zIndex": 3
+    },
+    {
+      "id": "button-text",
+      "type": "text",
+      "text": "Pack Your Cabin Gear",
+      "x": 380,
+      "y": 575,
+      "width": 320,
+      "height": 50,
+      "fontFamily": "Inter",
+      "fontSize": 28,
+      "fontStyle": "bold",
+      "fill": "#FFFFFF",
+      "align": "center",
+      "zIndex": 4
+    }
+  ]
+}

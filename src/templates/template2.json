@@ -1,0 +1,48 @@
+{
+  "id": "luxury-bag-1080x1920",
+  "title": "Luxury Bag – Clean",
+  "canvas": { "width": 1080, "height": 1920, "background": "#ffffff" },
+  "variables": {
+    "kicker":   { "label": "Kicker", "default": "New Collection" },
+    "title1":   { "label": "Title line 1", "default": "LUXURY" },
+    "title2":   { "label": "Title line 2", "default": "BAG" },
+    "dealNote": { "label": "Deal note", "default": "Special Discount" },
+    "dealText": { "label": "Deal text", "default": "30% OFF" },
+    "price":    { "label": "Price", "default": "Only $123.00" },
+    "site":     { "label": "Website", "default": "www.reallygreatsite.com" },
+    "accent":   { "label": "Accent Color", "default": "#4B403B" },
+    "productSrc": { "label": "Product Image URL", "default": "https://picsum.photos/seed/bag/900/700" }
+  },
+  "layers": [
+    {
+      "id": "bg",
+      "type": "rect",
+      "x": 0, "y": 0, "width": 1080, "height": 1920,
+      "locked": true,
+      "fill": "#ffffff"
+    },
+
+    { "id": "blob-top", "type": "circle", "x": 980, "y": 130, "radius": 70, "fill": "{{accent}}", "opacity": 0.95, "name": "Decor Top Right" },
+    { "id": "blob-top-cut", "type": "circle", "x": 1030, "y": 60, "radius": 40, "fill": "{{accent}}", "opacity": 0.95 },
+    { "id": "blob-bottom", "type": "circle", "x": 140, "y": 1810, "radius": 90, "fill": "{{accent}}", "opacity": 0.95, "name": "Decor Bottom Left" },
+    { "id": "blob-bottom-cut", "type": "circle", "x": 60, "y": 1880, "radius": 45, "fill": "{{accent}}", "opacity": 0.95 },
+
+    { "id": "kicker", "type": "text", "x": 120, "y": 160, "text": "{{kicker}}", "fontFamily": "Inter", "fontSize": 36, "fill": "#111111", "align": "center", "width": 840 },
+
+    { "id": "title1", "type": "text", "x": 120, "y": 230, "text": "{{title1}}", "fontFamily": "Georgia", "fontSize": 140, "fill": "#111111", "align": "center", "width": 840, "letterSpacing": 2 },
+    { "id": "title2", "type": "text", "x": 120, "y": 370, "text": "{{title2}}", "fontFamily": "Georgia", "fontSize": 140, "fill": "#111111", "align": "center", "width": 840, "letterSpacing": 8 },
+
+    { "id": "deal-line", "type": "rect", "x": 300, "y": 560, "width": 480, "height": 2, "fill": "#C7C7C7" },
+    { "id": "dealNote", "type": "text", "x": 120, "y": 520, "text": "{{dealNote}}", "fontFamily": "Inter", "fontSize": 30, "fill": "#111111", "align": "center", "width": 840 },
+    { "id": "dealText", "type": "text", "x": 120, "y": 570, "text": "{{dealText}}", "fontFamily": "Inter", "fontSize": 48, "fill": "#0E7490", "fontStyle": "bold", "align": "center", "width": 840 },
+
+    { "id": "product", "type": "image", "src": "{{productSrc}}", "x": 150, "y": 760, "width": 780, "height": 520, "name": "Product" },
+
+    { "id": "shadow", "type": "ellipse", "x": 540, "y": 1300, "radiusX": 320, "radiusY": 40, "fill": "#00000022", "blurRadius": 20, "opacity": 0.5, "listening": false },
+
+    { "id": "price-pill", "type": "rect", "x": 340, "y": 1380, "width": 400, "height": 80, "cornerRadius": 40, "fill": "#111827" },
+    { "id": "price-text", "type": "text", "x": 340, "y": 1398, "width": 400, "text": "{{price}}", "fontFamily": "Inter", "fontSize": 34, "fill": "#ffffff", "align": "center", "fontStyle": "bold" },
+
+    { "id": "site", "type": "text", "x": 120, "y": 1700, "text": "{{site}}", "fontFamily": "Inter", "fontSize": 28, "fill": "#6B7280", "align": "center", "width": 840 }
+  ]
+}
