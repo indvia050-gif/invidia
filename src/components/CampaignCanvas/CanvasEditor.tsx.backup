@@ -561,6 +561,10 @@ function CanvasEditor() {
             // Constrain position to canvas boundaries
             constrainedItem.x = Math.max(0, Math.min(constrainedItem.x, stageWidth - width));
             constrainedItem.y = Math.max(0, Math.min(constrainedItem.y, stageHeight - height));
+
+            console.log('UPDATE ITEM - Before constraint:', { id: next.id, x: next.x, y: next.y });
+            console.log('UPDATE ITEM - After constraint:', { id: constrainedItem.id, x: constrainedItem.x, y: constrainedItem.y });
+
             const updated = s.map((it) => (it.id === next.id ? constrainedItem : it));
             saveToHistory(updated, selectedId);
             return updated;
@@ -653,10 +657,12 @@ function CanvasEditor() {
                 if (stageRect) {
                     let x = e.clientX - stageRect.left;
                     let y = e.clientY - stageRect.top;
+                    console.log('handleCanvasDrop - initial drop position:', { x, y, stageWidth, stageHeight });
 
                     // Constrain drop position to canvas boundaries
                     x = Math.max(0, Math.min(x, stageWidth - 100)); // Default width constraint
                     y = Math.max(0, Math.min(y, stageHeight - 100)); // Default height constraint
+                    console.log('handleCanvasDrop - constrained drop position:', { x, y });
 
                     if (element.type === 'image') {
                         const currentMaxZ = items.length > 0 ? Math.max(...items.map(it => it.zIndex || 1)) : 0;

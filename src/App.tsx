@@ -47,13 +47,15 @@ function App() {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <Sidebar
-        collapsed={sidebarCollapsed}
-        currentPage={currentPage}
-        onNavigate={handleNavigate}
-      />
+      {currentPage !== 'campaigns' && (
+        <Sidebar
+          collapsed={sidebarCollapsed}
+          currentPage={currentPage}
+          onNavigate={handleNavigate}
+        />
+      )}
 
-      <main className="flex-1 flex flex-col overflow-hidden">
+      <main className={`flex-1 flex flex-col overflow-hidden ${currentPage === 'campaigns' ? 'w-full' : ''}`}>
         <Header
           onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
           onBack={handleBack}

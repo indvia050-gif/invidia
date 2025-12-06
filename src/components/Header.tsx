@@ -12,6 +12,7 @@ interface HeaderProps {
   onToggleSidebar: () => void;
   onBack?: () => void;
   onNext?: () => void;
+  showToggleSidebar?: boolean;
 }
 
 function Header({ onToggleSidebar, onBack, onNext }: HeaderProps) {
@@ -19,12 +20,14 @@ function Header({ onToggleSidebar, onBack, onNext }: HeaderProps) {
   return (
     <header className="bg-[#5087FF] p-2 mx-[0.1%] my-2 mr-2 text-white flex items-center rounded-lg justify-between">
       <div className="flex items-center gap-4">
-        <button
-          onClick={onToggleSidebar}
-          className="p-2 hover:bg-[#3D6CE8] rounded-lg"
-        >
-          <Menu className="w-5 h-5" />
-        </button>
+       
+          <button
+            onClick={onToggleSidebar}
+            className="p-2 hover:bg-[#3D6CE8] rounded-lg"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        
         <button
           onClick={onBack}
           className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100  rounded-lg bg-white text-black"

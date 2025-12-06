@@ -1,0 +1,83 @@
+{
+  "id": "hero-block-template",
+  "name": "Hero Block",
+  "canvas": {
+    "width": 1080,
+    "height": 450,
+    "background": "#F3F4F6"
+  },
+  "layers": [
+    {
+      "id": "hero-bg",
+      "type": "rect",
+      "x": 100,
+      "y": 50,
+      "width": 880,
+      "height": 350,
+      "cornerRadius": 24,
+      "fill": "#FFFFFF",
+      "shadowColor": "#00000020",
+      "shadowBlur": 16,
+      "shadowOffsetY": 4,
+      "zIndex": 1
+    },
+    {
+      "id": "hero-image-box",
+      "type": "rect",
+      "x": 140,
+      "y": 80,
+      "width": 800,
+      "height": 200,
+      "cornerRadius": 16,
+      "fill": "#F6F6F6",
+      "stroke": "#6D6680",
+      "strokeWidth": 3,
+      "zIndex": 2
+    },
+    {
+      "id": "hero-image-text",
+      "type": "text",
+      "text": "Image",
+      "x": 140,
+      "y": 140,
+      "width": 800,
+      "height": 100,
+      "fontFamily": "Inter",
+      "fontSize": 72,
+      "fill": "#BEBEBE",
+      "fontStyle": "bold",
+      "align": "center",
+      "zIndex": 3
+    },
+    {
+      "id": "hero-headline",
+      "type": "text",
+      "text": "Headline",
+      "x": 140,
+      "y": 290,
+      "width": 800,
+      "height": 40,
+      "fontFamily": "Inter",
+      "fontSize": 28,
+      "fill": "#6D6680",
+      "fontStyle": "bold",
+      "align": "center",
+      "zIndex": 3
+    },
+    {
+      "id": "hero-button",
+      "type": "button",
+      "x": 440,
+      "y": 340,
+      "width": 200,
+      "height": 48,
+      "text": "Button →",
+      "fill": "#6D6680",
+      "textColor": "#FFFFFF",
+      "borderRadius": 24,
+      "fontSize": 18,
+      "fontFamily": "Inter",
+      "zIndex": 3
+    }
+  ]
+}

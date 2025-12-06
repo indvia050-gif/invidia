@@ -10,13 +10,14 @@ import modules_06 from "/modules/modules_06.png";
 import modules_07 from "/modules/modules_07.png";
 import modules_08 from "/modules/modules_08.png";
 import modules_09 from "/modules/modules_09.png";
-
+import modules_10 from "/modules/modules_10.png";
+import modules_11 from "/modules/modules_11.png";
 function Modules() {
     const [dragPreview, setDragPreview] = useState<string | null>(null);
 
     return (
          <div className='lg:w-[362px] absolute left-0 lg:left-[100px] bottom-[200px] lg:bottom-[initial] z-20'>
-              <div className='border border-[#CFCFCF] bg-white rounded-lg p-4 h-[300px] lg:h-screen overflow-y-scroll'>
+              <div className='border border-[#CFCFCF] bg-[#F5F5FF]rounded-lg p-4 h-[300px] lg:h-screen overflow-y-scroll'>
                   <div className='mb-3'>
                     <h3 className='text-[22px] leading-[32px] text-[#414141] font-medium pb-0'>Modules</h3>
                     <p className='text-[16px] leading-[26px] text-[#818181] font-medium pb-2'>Drag & Drop</p>
@@ -245,7 +246,46 @@ function Modules() {
                       </div>
                     </div>
                   </div>
-
+                   <div className='mt-3 border-b border-[#e8e8e8]'>
+                    <p className='text-[16px] leading-[26px] text-[#414141] font-medium pb-2'>Mood Block</p>
+                    <div
+                      className='text-center mb-3 cursor-grab hover:bg-gray-50 active:cursor-grabbing pb-2'
+                      draggable
+                      onDragStart={(e) => {
+                        e.dataTransfer.setData('template', JSON.stringify({
+                          templateKey: 'moodBlock',
+                          name: 'Mood Block'
+                        }));
+                        setDragPreview('Mood Block');
+                      }}
+                      onDragEnd={() => setDragPreview(null)}
+                    >
+                      <div className='pointer-events-none'>
+                        <img src={modules_10} alt="modules_10" className='mb-0 inline-block' />
+                        <p className='text-[16px] leading-[26px] text-[#A5A2AD] font-medium pb-2'>Layout 2</p>
+                      </div>
+                    </div>
+                  </div>
+                   <div className='mt-3 border-b border-[#e8e8e8]'>
+                    <p className='text-[16px] leading-[26px] text-[#414141] font-medium pb-2'>Hero Block</p>
+                    <div
+                      className='text-center mb-3 cursor-grab hover:bg-gray-50 active:cursor-grabbing pb-2'
+                      draggable
+                      onDragStart={(e) => {
+                        e.dataTransfer.setData('template', JSON.stringify({
+                          templateKey: 'heroBlock',
+                          name: 'Hero Block'
+                        }));
+                        setDragPreview('Hero Block');
+                      }}
+                      onDragEnd={() => setDragPreview(null)}
+                    >
+                      <div className='pointer-events-none'>
+                        <img src={modules_11} alt="modules_11" className='mb-0 inline-block' />
+                        {/* <p className='text-[16px] leading-[26px] text-[#A5A2AD] font-medium pb-2'>Social Proof Block</p> */}
+                      </div>
+                    </div>
+                  </div>
               </div>
         </div>
     );

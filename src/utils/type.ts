@@ -6,7 +6,12 @@ export type BaseItem = {
     width: number;
     height: number;
     rotation?: number;
+    zIndex?: number;
+    visible?: boolean;
+    locked?: boolean;
+    resizable?: boolean;
     badge?: boolean;
+    groupId?: string;
 };
 
 export type RectItem = BaseItem & { type: "rect"; fill: string };
@@ -26,6 +31,7 @@ export type ButtonItem = BaseItem & {
     fill?: string;
     textColor?: string;
     borderRadius?: number;
+    fontSize?: number;
 };
 export type GroupItem = BaseItem & {
     type: "group";

@@ -1,5 +1,5 @@
 import Konva from "konva";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Group } from "react-konva";
 import { snap } from "@/utils/constants";
 import { GroupItem, Item, RectItem, ImageItem, TextItem, ButtonItem } from "@/utils/type";
@@ -13,26 +13,26 @@ function DraggableGroup({
     isSelected,
     onSelect,
     onChange,
-    trRef,
+    isLocked = false,
 }: {
     item: GroupItem;
     isSelected: boolean;
-    onSelect: () => void;
+    onSelect: (event?: any) => void;
     onChange: (it: GroupItem) => void;
-    trRef: React.RefObject<Konva.Transformer | null>;
+    isLocked?: boolean;
 }) {
     const groupRef = useRef<Konva.Group>(null);
 
-    useEffect(() => {
-        if (isSelected && trRef.current && groupRef.current) {
-            trRef.current.nodes([groupRef.current]);
-            trRef.current.getLayer()?.batchDraw();
-        }
-    }, [isSelected, trRef]);
-
     const handleChildChange = (childId: string, updatedChild: Item) => {
+        // children are stored in absolute coords; convert back before persisting
         const updatedChildren = item.children.map(child =>
-            child.id === childId ? updatedChild : child
+            child.id === childId
+                ? {
+                    ...updatedChild,
+                    x: item.x + updatedChild.x,
+                    y: item.y + updatedChild.y,
+                }
+                : child
         );
         onChange({ ...item, children: updatedChildren });
     };
@@ -42,20 +42,23 @@ function DraggableGroup({
             key: child.id,
             isSelected: false, // Children are not individually selectable
             onSelect: () => { }, // No-op for children
-            trRef: { current: null }, // No transformer for children
+            isLocked: true, // Children should not be individually draggable
         };
 
-        switch (child.type) {
+        // Render children in coordinates relative to the parent group
+        const relativeChild = { ...child, x: child.x - item.x, y: child.y - item.y } as Item;
+
+        switch (relativeChild.type) {
             case "rect":
-                return <DraggableRect {...childProps} item={child as RectItem} onChange={(updated) => handleChildChange(child.id, updated)} />;
+                return <DraggableRect {...childProps} item={relativeChild as RectItem} onChange={(updated) => handleChildChange(child.id, updated)} />;
             case "image":
-                return <DraggableImage {...childProps} item={child as ImageItem} onChange={(updated) => handleChildChange(child.id, updated)} />;
+                return <DraggableImage {...childProps} item={relativeChild as ImageItem} onChange={(updated) => handleChildChange(child.id, updated)} />;
             case "text":
-                return <DraggableText {...childProps} item={child as TextItem} onChange={(updated) => handleChildChange(child.id, updated)} />;
+                return <DraggableText {...childProps} item={relativeChild as TextItem} onChange={(updated) => handleChildChange(child.id, updated)} />;
             case "button":
-                return <DraggableButton {...childProps} item={child as ButtonItem} onChange={(updated) => handleChildChange(child.id, updated)} />;
+                return <DraggableButton {...childProps} item={relativeChild as ButtonItem} onChange={(updated) => handleChildChange(child.id, updated)} />;
             case "group":
-                return <DraggableGroup {...childProps} item={child as GroupItem} onChange={(updated) => handleChildChange(child.id, updated)} />;
+                return <DraggableGroup {...childProps} item={relativeChild as GroupItem} onChange={(updated) => handleChildChange(child.id, updated)} />;
             default:
                 return null;
         }
@@ -64,29 +67,19 @@ function DraggableGroup({
     return (
         <Group
             ref={groupRef}
+            id={item.id}
             x={item.x}
             y={item.y}
             width={item.width}
             height={item.height}
             rotation={item.rotation ?? 0}
-            draggable
-            onClick={onSelect}
-            onTap={onSelect}
-            onDragEnd={(e) => onChange({ ...item, x: snap(e.target.x()), y: snap(e.target.y()) })}
-            onTransformEnd={() => {
-                const node = groupRef.current!;
-                const scaleX = node.scaleX();
-                const scaleY = node.scaleY();
-                node.scaleX(1);
-                node.scaleY(1);
-                onChange({
-                    ...item,
-                    x: snap(node.x()),
-                    y: snap(node.y()),
-                    width: Math.max(50, Math.round(node.width() * scaleX)),
-                    height: Math.max(50, Math.round(node.height() * scaleY)),
-                    rotation: Math.round(node.rotation() || 0),
-                });
+            draggable={!isLocked}
+            onClick={!isLocked ? onSelect : undefined}
+            onTap={!isLocked ? onSelect : undefined}
+            onDragEnd={(e) => {
+                if (!isLocked) {
+                    onChange({ ...item, x: snap(e.target.x()), y: snap(e.target.y()) });
+                }
             }}
         >
             {item.children.map(renderChild)}

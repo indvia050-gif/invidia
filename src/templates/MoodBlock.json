@@ -1,0 +1,83 @@
+{
+  "id": "mood-block-template",
+  "name": "Mood Block",
+  "canvas": {
+    "width": 1080,
+    "height": 400,
+    "background": "#F3F4F6"
+  },
+  "layers": [
+    {
+      "id": "mood-bg",
+      "type": "rect",
+      "x": 100,
+      "y": 50,
+      "width": 880,
+      "height": 300,
+      "cornerRadius": 24,
+      "fill": "#FFFFFF",
+      "shadowColor": "#00000020",
+      "shadowBlur": 16,
+      "shadowOffsetY": 4,
+      "zIndex": 1
+    },
+    {
+      "id": "mood-image-box",
+      "type": "rect",
+      "x": 140,
+      "y": 80,
+      "width": 800,
+      "height": 180,
+      "cornerRadius": 16,
+      "fill": "#F6F6F6",
+      "stroke": "#6D6680",
+      "strokeWidth": 3,
+      "zIndex": 2
+    },
+    {
+      "id": "mood-image-text",
+      "type": "text",
+      "text": "Image",
+      "x": 140,
+      "y": 140,
+      "width": 800,
+      "height": 60,
+      "fontFamily": "Inter",
+      "fontSize": 64,
+      "fill": "#BEBEBE",
+      "fontStyle": "bold",
+      "align": "center",
+      "zIndex": 3
+    },
+    {
+      "id": "mood-headline",
+      "type": "text",
+      "text": "Headline",
+      "x": 140,
+      "y": 270,
+      "width": 800,
+      "height": 40,
+      "fontFamily": "Inter",
+      "fontSize": 28,
+      "fill": "#6D6680",
+      "fontStyle": "bold",
+      "align": "center",
+      "zIndex": 3
+    },
+    {
+      "id": "mood-button",
+      "type": "button",
+      "x": 440,
+      "y": 310,
+      "width": 200,
+      "height": 48,
+      "text": "Button →",
+      "fill": "#6D6680",
+      "textColor": "#FFFFFF",
+      "borderRadius": 24,
+      "fontSize": 18,
+      "fontFamily": "Inter",
+      "zIndex": 3
+    }
+  ]
+}
